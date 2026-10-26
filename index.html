@@ -433,6 +433,8 @@ tr.fy-me td { background: color-mix(in srgb, var(--accent) 10%, transparent); }
 .fy-toast.bad { background: var(--bad); color: #fff; }
 @media (max-width: 420px) { .fy-slot { min-height: 100px; } .fy-sn { font-size: 15px; } .fy-line.b .fy-slot { min-height: 90px; } }
 .fy-invite { background: color-mix(in srgb, var(--good) 14%, transparent); border-radius: 8px; padding: 8px 10px; font-size: 14px; margin: 0 0 10px; }
+.fy-warn { position: absolute; top: 5px; left: 5px; width: 18px; height: 18px; border-radius: 50%; background: var(--bad); color: #fff; font-weight: 700; font-size: 12px; display: grid; place-items: center; }
+.fy-warn-t { color: var(--bad) !important; }
 </style>
 </head>
 <body>
@@ -697,9 +699,9 @@ tr.fy-me td { background: color-mix(in srgb, var(--accent) 10%, transparent); }
       <p>Každý hráč má kartu s celkovým hodnocením <b>OVR</b> (40–99) a atributy (20–99). Atribut je vždy jedno měřitelné číslo za poslední 3 roky (novější zápasy váží víc, malý vzorek se stahuje k průměru postu), porovnané s ostatními hráči stejného postu: 60 = průměr hráčů, kteří pravidelně hrají, každých 12 bodů je jedna směrodatná odchylka.</p>
       <ul>
         <li><b>Útočníci a obránci:</b> STŘ střelba (góly/60), PŘI přihrávky (asistence/60), AKT aktivita (střely/60), EFE efektivita (úspěšnost střelby), OBR obrana (+/- očištěné o tým), PŘE přesilovky a oslabení, VYT vytížení (minuty na zápas), DIS disciplína (trestné minuty), KLU klíčové góly.</li>
-        <li><b>Brankáři:</b> ZÁK zákroky (úspěšnost stažená k průměru), STA stabilita (podíl nadprůměrných zápasů), ZKU zkušenost, VYT vytížení, FOR forma.</li>
+        <li><b>Brankáři:</b> ZÁK zákroky (úspěšnost stažená k průměru a očištěná o obranu klubu), STA stabilita (podíl nadprůměrných zápasů), ZKU zkušenost, VYT vytížení, FOR forma. Starty za reprezentaci v posledních dvou sezónách dávají jen malý bonus – rozhodují zákroky.</li>
       </ul>
-      <p><b>Jak vzniká OVR (verze 3):</b> váhy jsem nevolil od oka, OVR spojuje dva modely naučené na datech. <b>Model dopadu</b> (hřebenová regrese) předpovídá, kolik hráč přinese týmu v příští sezóně (body nad průměr postu převedené na góly plus vliv na skóre). Zná výkony za 60 minut, podíl hráče na gólech týmu, minuty a zápasy v 1. formaci, přesilovky, věk a celou kariéru (Superliga, 1. liga, Pohár mistrů, play-off i zahraničí). Síla týmu je při výpočtu nastavená na průměrný tým, takže hráč slabšího klubu není penalizovaný za horší spoluhráče. <b>Expertní model</b> (logistická regrese) se učil z nominací do A-reprezentace: jak moc se hráč podobá těm, které trenéři berou. Síla klubu v něm záměrně není. Výsledek je 60 % dopad + 40 % expert u útočníků a půl na půl u obránců, na stupnici 70 + 8 × odchylka: 70 = průměrný hráč základní sestavy, 80+ zhruba nejlepších 10 %, 90+ hvězdy ligy.</p>
+      <p><b>Jak vzniká OVR (verze 3):</b> váhy jsem nevolil od oka, OVR spojuje dva modely naučené na datech. <b>Model dopadu</b> (hřebenová regrese) předpovídá, kolik hráč přinese týmu v příští sezóně (body nad průměr postu převedené na góly plus vliv na skóre). Zná výkony za 60 minut, podíl hráče na gólech týmu, minuty a zápasy v 1. formaci, přesilovky, věk a celou kariéru (Superliga, 1. liga, Pohár mistrů, play-off i zahraničí). Síla týmu je při výpočtu nastavená na průměrný tým, takže hráč slabšího klubu není penalizovaný za horší spoluhráče. <b>Expertní model</b> (logistická regrese) se učil z nominací do A-reprezentace: jak moc se hráč podobá těm, které trenéři berou. Síla klubu v něm záměrně není. Výsledek je 70 % dopad + 30 % expert u útočníků a půl na půl u obránců (u útočníků tento poměr nejlépe předpovídá jejich další výkony; u obránců, kde chybí obranné statistiky, pomáhá expertní pohled víc), na stupnici 70 + 8 × odchylka: 70 = průměrný hráč základní sestavy, 80+ zhruba nejlepších 10 %, 90+ hvězdy ligy.</p>
       <p><b>Co je nové ve verzi 3:</b> (1) <b>Síla soupeře</b>: body se násobí podle toho, jak těžké obrany hráč potkával. V lize, kde hraje každý s každým, je rozdíl malý (u 90 % hráčů do ±5 %), ale body proti silným týmům váží víc. (2) <b>Zahraničí</b>: sezóny ve Švédsku (SSL, Allsvenskan), Finsku (F-liiga) a Švýcarsku (NLA, NLB) se převádějí na „superligové“ body koeficientem ligy spočítaným z hráčů, kteří hráli v obou soutěžích (SSL × 2,3, F-liiga × 1,3, NLA × 1,28, NLB × 0,83). Hráč, který se vrátil, tak není podhodnocený jen proto, že v posledních letech nehrál Superligu. Švédská data jsou neúplná (veřejný zdroj nemá všechny hráče). (3) <b>Hra v poli</b>: +/- očištěné o sílu soupeře a odhad gólů pro a proti, když je hráčova formace na hřišti (z formací a autorů gólů, od 2022/23). Pomáhá hlavně u obránců, kde body moc neříkají. (4) Play-off a play-down jsem testoval zvlášť: nad rámec celkových čísel predikci nezlepšují, takže play-off zůstává v kariérní složce.</p>
       <p><b>Verze 4 – role, historie, forma, trofeje:</b> (1) <b>Pořadí v týmu</b> (kolikátý nejproduktivnější útočník/obránce svého klubu je hráč) zlepšilo predikci útočníků, takže je v modelu. Interakce „role × síla týmu“ a síla týmu v expertním modelu přínos neměly: síla týmu se do OVR promítá jen nepřímo (přes roli, minuty a podíl na gólech), protože hráč, který přestoupí do slabšího týmu, boduje skoro stejně. (2) <b>Historie:</b> otestoval jsem okna 2–4 sezóny a různé rychlosti stárnutí. Nejlépe vychází 4 sezóny s vahami 1 : ½ : ¼ : ⅛ (poslední sezóna má 53 % váhy okna), plus kariérní průměr ze všech sezón (každý rok starší × 0,75). (3) <b>Forma po vzoru FIFA:</b> karta ukazuje základní OVR a „živé“ OVR s bonusem/malusem za posledních 10 zápasů (max ±6). Test na 19 tisících zápasech hráčů: forma o 1 směrodatnou odchylku lepší = o 17 % víc bodů v dalším zápase. U brankářů je signál slabý, proto mají poloviční bonus (max ±3). (4) <b>Trofeje</b> (tituly mistra, Pohár mistrů, medaile z MS) zlepšily predikci obránců, u útočníků ne – proto vstupují jen do OVR obránců; u všech jsou vidět v detailu karty.</p>
       <p><b>H2H a forma v predikci zápasů:</b> model zápasů nově posouvá očekávané góly podle vzájemných zápasů dvojice (odchylka od očekávání za poslední 3 roky, stažená) a formy týmů (posledních 3 zápasů). Na zápasech 2019–2026 to mimo vzorek zlepšilo predikci, ale efekt je malý – typicky do ±3 % gólů. Rozpad je vidět u každého zápasu (H2H karta) a v detailu dvojice týmů.</p>
@@ -2004,6 +2006,7 @@ function squadProblem(d) {
   if (!d.captain || !d.vice) return "Vyber kapitána a zástupce (klepni na hráče v základu).";
   return null;
 }
+const priceArrow = (p) => (p.price_change > 0 ? " ▲" : p.price_change < 0 ? " ▼" : "");
 const clubAbbrF = (cid) => FY.players.find((p) => p.club_id === cid)?.abbr || "?";
 
 /* ---------- vykreslení ---------- */
@@ -2118,7 +2121,8 @@ function slotTile(i) {
     return b;
   }
   const lg = el("span", "fy-logo"); lg.appendChild(logoEl(p.club_id, p.abbr));
-  b.append(lg, el("span", "fy-sn", surname(p.name)), el("span", "fy-sm", `${p.abbr || ""} · ${fyPrice(p.price)}`), el("span", "fy-pts", `${p.pts} b.`));
+  b.append(lg, el("span", "fy-sn", surname(p.name)), el("span", "fy-sm", `${p.abbr || ""} · ${fyPrice(p.price)}${priceArrow(p)}`), el("span", "fy-pts", `${p.pts} b.`));
+  if (p.last3 === 0) { const w = el("span", "fy-warn", "!"); w.title = "Nehrál v posledních 3 zápasech klubu"; b.appendChild(w); }
   if (d.captain === id) b.appendChild(el("span", "fy-cap", "C"));
   else if (d.vice === id) b.appendChild(el("span", "fy-cap v", "Z"));
   b.onclick = () => slotMenu(i);
@@ -2143,7 +2147,7 @@ function builderCard() {
   const bud = el("div", "fy-budget");
   const bar = el("div", "bar"); const i = el("i"); i.style.width = Math.min(100, (s.spent / R.budget) * 100) + "%"; i.style.background = left < 0 ? "var(--bad)" : "var(--accent)"; bar.appendChild(i);
   bud.append(el("div", "fy-row", ""), bar);
-  bud.firstChild.append(el("span", null, `Utraceno ${fyPrice(s.spent)} z ${fyPrice(R.budget)}`), el("b", left < 0 ? "neg" : "", `zbývá ${fyPrice(left)}`));
+  bud.firstChild.append(el("span", null, `Utraceno ${fyPrice(s.spent)} z ${fyPrice(R.budget)}${R.budget > 75 ? " (hodnota tvého týmu)" : ""}`), el("b", left < 0 ? "neg" : "", `zbývá ${fyPrice(left)}`));
   c.appendChild(bud);
   c.appendChild(el("p", "muted fy-small", s.first ? "Před prvním kolem měníš hráče zdarma a bez omezení." :
     `Přestupy v tomto kole: ${s.transfers} (zdarma ${R.free_transfers}${s.cost ? `, srážka −${s.cost} b.` : ""}).`));
@@ -2228,7 +2232,8 @@ function openPicker(i) {
       const b = el("button", "fy-pick"); b.type = "button"; b.disabled = !!why;
       const lg = el("span", "fy-logo"); lg.appendChild(logoEl(p.club_id, p.abbr));
       const nm = el("span", "fy-pn"); nm.append(el("b", null, p.name), el("small", null, `${p.abbr || ""} · OVR ${p.ovr ?? "–"} · ${p.gp} záp. · ${p.ppg != null ? n1.format(p.ppg) : "–"} b./z.${p.selected ? " · vybralo " + p.selected : ""}`));
-      b.append(lg, nm, el("span", "fy-pp", String(p.pts)), el("span", "fy-pr", why || fyPrice(p.price)));
+      if (p.last3 === 0) nm.appendChild(el("small", "fy-warn-t", "⚠ nehrál v posl. 3 zápasech"));
+      b.append(lg, nm, el("span", "fy-pp", String(p.pts)), el("span", "fy-pr", why || fyPrice(p.price) + priceArrow(p)));
       b.onclick = () => { closeDet(); setDraft((x) => { const old = x.players[i]; x.players[i] = p.player_id; if (old && x.captain === old) x.captain = i < 6 ? p.player_id : null; if (old && x.vice === old) x.vice = i < 6 ? p.player_id : null; }); };
       return b;
     }));
@@ -2353,7 +2358,9 @@ function rulesCard(open) {
   const ul = (items) => { const u = el("ul"); items.forEach((t) => u.appendChild(el("li", null, t))); return u; };
   c.append(
     el("h3", null, "Tým"),
-    ul(["Soupiska 10 hráčů: 2 brankáři, 3 obránci, 5 útočníků. Rozpočet 75,0; ceny jsou podle síly hráče (OVR).",
+    ul(["Soupiska 10 hráčů: 2 brankáři, 3 obránci, 5 útočníků. Rozpočet 75,0.",
+      "Cena odpovídá bodům, které od hráče čekáme: jeho fantasy body v této a minulé sezóně, síla (OVR) a jak pravidelně nastupuje. Po každém kole se cena může posunout nejvýš o 0,5 (▲▼).",
+      "Když tvým hráčům cena stoupne, roste i tvůj rozpočet – můžeš utratit tolik, kolik má tvůj dosavadní tým hodnotu, minimálně 75,0.",
       "Hraje základ 1 + 2 + 3 (brankář, 2 obránci, 3 útočníci). Lavička (1 + 1 + 2) střídá, když hráč ze základu v kole nenastoupí.",
       "Nejvýš 3 hráči z jednoho klubu. Kapitán má body dvojnásobně; nenastoupí-li, zdvojnásobí se zástupce.",
       "Sestavu na kolo měníš do začátku jeho prvního zápasu. Uložená sestava platí i pro další kola, dokud ji nezměníš.",

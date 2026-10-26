@@ -1,4 +1,4 @@
-const SHELL = "shell-aaa103c655", DATA = "data-v1";
+const SHELL = "shell-df39ce263a", DATA = "data-v1";
 const FILES = ["./", "index.html", "manifest.webmanifest", "logos.json", "icons/icon-192.png", "icons/icon-512.png", "icons/apple-touch-icon.png"];
 self.addEventListener("install", (e) => { e.waitUntil(caches.open(SHELL).then((c) => c.addAll(FILES)).then(() => self.skipWaiting())); });
 self.addEventListener("activate", (e) => {
