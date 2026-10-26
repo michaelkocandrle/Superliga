@@ -348,6 +348,47 @@ table.h2h td:focus-visible { outline: 2px solid var(--accent); }
 .vs-bar { display: flex; height: 10px; border-radius: 6px; overflow: hidden; margin-top: 8px; }
 .vs-bar i { display: block; }
 
+
+/* ---------- hráči: seznam ---------- */
+.pv-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 10px; padding: 2px; background: var(--panel-2); }
+.seg button { font: inherit; font-size: 14px; font-weight: 600; border: 0; background: none; color: var(--muted); padding: 5px 12px; border-radius: 8px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--panel); color: var(--ink); box-shadow: 0 1px 2px rgb(0 0 0 / .12); }
+#pv-cards .howto { margin: 6px 0 12px; }
+.c-search { flex: 1 1 260px; font-size: 16px; }
+.pl-list { display: flex; flex-direction: column; }
+.pl-list[hidden], .fc-grid[hidden], #c-legend[hidden] { display: none !important; }
+.pl-row { all: unset; box-sizing: border-box; cursor: pointer; display: grid; grid-template-columns: 26px 46px 28px minmax(0, 1fr) auto; align-items: center; gap: 10px; padding: 8px 4px; border-bottom: 1px solid var(--line); }
+.pl-row:hover { background: var(--panel-2); }
+.pl-row:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.pl-rk { color: var(--muted); font-size: 13px; text-align: right; font-variant-numeric: tabular-nums; }
+.pl-ovr { position: relative; font-family: var(--font-display); font-weight: 700; font-size: 22px; line-height: 1; text-align: center; padding: 7px 0 6px; border-radius: 8px;
+  background: linear-gradient(160deg, var(--fc-1), var(--fc-2)); color: var(--fc-ink); }
+.pl-ovr.elite { --fc-1: var(--fc-elite-1); --fc-2: var(--fc-elite-2); --fc-ink: var(--fc-elite-ink); }
+.pl-ovr.gold { --fc-1: var(--fc-gold-1); --fc-2: var(--fc-gold-2); --fc-ink: var(--fc-gold-ink); }
+.pl-ovr.silver { --fc-1: var(--fc-silver-1); --fc-2: var(--fc-silver-2); --fc-ink: var(--fc-silver-ink); }
+.pl-ovr.bronze { --fc-1: var(--fc-bronze-1); --fc-2: var(--fc-bronze-2); --fc-ink: var(--fc-bronze-ink); }
+.pl-ovr small { position: absolute; right: -6px; top: -7px; font-family: var(--font-body); font-size: 10px; font-weight: 700; color: #fff; border-radius: 99px; padding: 0 4px; line-height: 15px; }
+.pl-ovr small.up { background: #1f8a4c; } .pl-ovr small.down { background: #b3392f; }
+.pl-logo { width: 28px; height: 28px; display: grid; place-items: center; border-radius: 7px; background: #fff; }
+.pl-logo img { max-width: 26px; max-height: 26px; object-fit: contain; }
+.pl-logo .ab { font-family: var(--font-display); font-size: 11px; font-weight: 700; border: 1px solid var(--line); border-radius: 4px; padding: 0 3px; }
+.pl-nm { display: flex; flex-direction: column; min-width: 0; }
+.pl-nm b { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pl-nm small { color: var(--muted); font-size: 12.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pl-st { display: flex; flex-direction: column; align-items: flex-end; }
+.pl-st b { font-family: var(--font-display); font-size: 20px; font-weight: 700; line-height: 1; }
+.pl-st small { color: var(--muted); font-size: 11.5px; }
+@media (max-width: 759px) {
+  #pv-cards .tools { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  #pv-cards .tools .c-search, #pv-cards .tools .chips, #pv-cards .tools label { grid-column: 1 / -1; }
+  #pv-cards .tools .c-search { width: 100%; }
+  #pv-cards .tools .chips { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+  #pv-cards .tools select { width: 100%; min-width: 0; }
+  #p-view { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-inline: -16px; padding-inline: 16px; }
+  #p-view .chip { white-space: nowrap; }
+  .pl-row { grid-template-columns: 22px 42px 26px minmax(0, 1fr) auto; gap: 8px; }
+}
 /* =====================================================================
    APLIKAČNÍ RÁM (v5): kompaktní lepkavá hlavička, na mobilu spodní lišta
    ===================================================================== */
@@ -506,6 +547,15 @@ tr.fy-me td { background: color-mix(in srgb, var(--accent) 10%, transparent); }
 .fy-xpsum { margin: 10px 0 0; font-size: 13.5px; color: var(--muted); }
 .fy-line.b .fy-sn { font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; overflow-wrap: normal; }
 .fy-bench .cap { text-transform: none; letter-spacing: 0; font-size: 12.5px; }
+.fy-hist h3 { font-size: 20px; margin: 4px 0 2px; }
+.fy-bars { display: flex; align-items: flex-end; gap: 6px; height: 120px; margin: 10px 0 4px; padding-bottom: 2px; overflow-x: auto; }
+.fy-bar { flex: 1 0 30px; max-width: 56px; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 2px; }
+.fy-bar i { display: block; width: 100%; border-radius: 5px 5px 2px 2px; background: var(--accent); }
+.fy-bar.neg i { background: var(--bad); border-radius: 2px 2px 5px 5px; }
+.fy-bar b { font-family: var(--font-display); font-size: 14px; }
+.fy-bar small { font-size: 11px; color: var(--muted); }
+.fy-rink-sm .fy-slot { min-height: 96px; }
+.fy-round .fy-link b { font-weight: 600; }
 </style>
 </head>
 <body>
@@ -636,23 +686,24 @@ tr.fy-me td { background: color-mix(in srgb, var(--accent) 10%, transparent); }
   <!-- ===================== HRÁČI ===================== -->
   <section class="panel" id="hraci" role="tabpanel" hidden>
     <div class="chips" id="p-view" role="tablist" aria-label="Pohled na hráče">
-      <button class="chip" data-view="cards" aria-pressed="true">Karty hráčů (OVR)</button>
+      <button class="chip" data-view="cards" aria-pressed="true">Hráči (OVR)</button>
       <button class="chip" data-view="proj" aria-pressed="false">Projekce bodování</button>
       <button class="chip" data-view="rat" aria-pressed="false">Rating hráčů</button>
       <button class="chip" data-view="gk" aria-pressed="false">Brankáři</button>
     </div>
     <div class="card" id="pv-cards">
-      <h2>Karty hráčů</h2>
-      <p class="note">OVR (40–99, 70 = průměrný hráč základní sestavy) spojuje model dopadu na skóre a expertní model naučený z nominací do reprezentace. Zohledňuje celou kariéru včetně zahraničí, sílu soupeřů, roli v týmu i věk, síla klubu se odfiltruje. Klikni na kartu pro detail se všemi statistikami.</p>
+      <div class="pv-head"><h2>Hráči</h2><div class="seg" id="c-layout" role="group" aria-label="Zobrazení"><button type="button" data-l="list" aria-pressed="true">Seznam</button><button type="button" data-l="grid" aria-pressed="false">Karty</button></div></div>
+      <details class="howto"><summary>Co znamená OVR</summary><p class="muted">OVR (40–99, 70 = průměrný hráč základní sestavy) spojuje model dopadu na skóre a expertní model naučený z nominací do reprezentace. Zohledňuje celou kariéru včetně zahraničí, sílu soupeřů, roli v týmu i věk, síla klubu se odfiltruje. Klikni na hráče pro detail se všemi statistikami.</p></details>
       <div class="tools">
-        <input class="search" id="c-search" type="search" placeholder="Hledat hráče" aria-label="Hledat hráče">
+        <input class="search c-search" id="c-search" type="search" placeholder="Najít hráče podle jména" aria-label="Najít hráče podle jména">
         <div class="chips" id="c-pos"><button class="chip" data-pos="" aria-pressed="true">Všichni</button><button class="chip" data-pos="U" aria-pressed="false">Útočníci</button><button class="chip" data-pos="O" aria-pressed="false">Obránci</button><button class="chip" data-pos="G" aria-pressed="false">Brankáři</button></div>
         <select class="search" id="c-team" aria-label="Tým"><option value="">Všechny týmy</option></select>
         <select class="search" id="c-sort" aria-label="Řadit podle"><option value="ovr">Řadit: OVR</option></select>
         <label class="muted" style="font-size:13px"><input type="checkbox" id="c-active" checked> jen hráči letošní sezóny</label>
       </div>
-      <div class="tier-legend" style="margin-bottom:10px"><span><i style="background:linear-gradient(160deg,var(--fc-elite-1),var(--fc-elite-2))"></i>90+</span><span><i style="background:linear-gradient(160deg,var(--fc-gold-1),var(--fc-gold-2))"></i>80–89</span><span><i style="background:linear-gradient(160deg,var(--fc-silver-1),var(--fc-silver-2))"></i>70–79</span><span><i style="background:linear-gradient(160deg,var(--fc-bronze-1),var(--fc-bronze-2))"></i>pod 70</span><span id="c-count"></span></div>
+      <div class="tier-legend" id="c-legend" style="margin-bottom:10px"><span><i style="background:linear-gradient(160deg,var(--fc-elite-1),var(--fc-elite-2))"></i>90+</span><span><i style="background:linear-gradient(160deg,var(--fc-gold-1),var(--fc-gold-2))"></i>80–89</span><span><i style="background:linear-gradient(160deg,var(--fc-silver-1),var(--fc-silver-2))"></i>70–79</span><span><i style="background:linear-gradient(160deg,var(--fc-bronze-1),var(--fc-bronze-2))"></i>pod 70</span><span id="c-count"></span></div>
       <div class="fc-grid" id="player-cards"></div>
+      <div class="pl-list" id="player-list"></div>
       <button class="chip more" id="c-more" type="button" hidden>Zobrazit další</button>
     </div>
     <div class="card" id="pv-proj" hidden>
@@ -1482,27 +1533,56 @@ function renderCards() {
   }
   const sortSel = $("#c-sort");
   const codes = state.cPos === "G" ? ["ZÁK", "STA", "ZKU", "VYT", "FOR"] : ["STŘ", "PŘI", "AKT", "OBR", "PŘE", "VYT", "EFE", "DIS", "KLU"];
-  const want = ["ovr", "age", ...codes];
+  const want = ["ovr", "pts", "form", "age", ...codes];
   if ([...sortSel.options].map((o) => o.value).join() !== want.join()) {
     const cur = sortSel.value;
-    sortSel.replaceChildren(...want.map((k) => { const o = el("option", null, "Řadit: " + (k === "ovr" ? "OVR" : k === "age" ? "věk (nejmladší)" : ATTR[k][0])); o.value = k; return o; }));
+    sortSel.replaceChildren(...want.map((k) => { const o = el("option", null, "Řadit: " + (k === "ovr" ? "OVR" : k === "pts" ? "body letos" : k === "form" ? "forma" : k === "age" ? "věk (nejmladší)" : ATTR[k][0])); o.value = k; return o; }));
     sortSel.value = want.includes(cur) ? cur : "ovr";
   }
   const qy = ($("#c-search").value || "").trim().toLowerCase();
   const team = sel.value, sk = sortSel.value, active = $("#c-active").checked;
-  const val = (c) => sk === "ovr" ? c.ovr : sk === "age" ? -(c.age ?? 99) : (c.attrs?.[sk] ?? -1);
+  const val = (c) => sk === "ovr" ? (c.ovr_live ?? c.ovr) : sk === "pts" ? (c.pts_season ?? -1) : sk === "form" ? (c.form_boost ?? 0) : sk === "age" ? -(c.age ?? 99) : (c.attrs?.[sk] ?? -1);
   const rows = state.cards.filter((c) => (!state.cPos || c.pos === state.cPos) && (!team || String(c.club_id) === team) && (!active || c.gp_season > 0)
       && (!qy || c.name.toLowerCase().includes(qy)))
     .sort((a, b) => val(b) - val(a) || b.ovr - a.ovr);
-  $("#c-count").textContent = `· ${rows.length} hráčů`;
-  $("#player-cards").replaceChildren(...rows.slice(0, state.cShow).map((c) => fcCard(c, c.pos)));
+  $("#c-count").textContent = `${rows.length} hráčů`;
+  const list = state.cLayout !== "grid";
+  $("#player-cards").hidden = list; $("#player-list").hidden = !list;
+  if (list) $("#player-list").replaceChildren(...rows.slice(0, state.cShow).map((c, i) => plRow(c, i + 1, sk)));
+  else $("#player-cards").replaceChildren(...rows.slice(0, state.cShow).map((c) => fcCard(c, c.pos)));
   $("#c-more").hidden = rows.length <= state.cShow;
 }
-$("#c-search").addEventListener("input", () => { state.cShow = 60; renderCards(); });
+const ATTRN = (k) => k === "ovr" ? "OVR" : k === "age" ? "věk" : k === "pts" ? "body" : k === "form" ? "forma" : k;
+function plRow(c, rank, sk) {
+  const b = el("button", "pl-row"); b.type = "button";
+  const live = c.form_boost ? c.ovr_live : c.ovr;
+  const ov = el("span", "pl-ovr " + tier(live), String(live));
+  if (c.form_boost) ov.appendChild(el("small", c.form_boost > 0 ? "up" : "down", (c.form_boost > 0 ? "▲" : "▼") + Math.abs(c.form_boost)));
+  const lg = el("span", "pl-logo"); if (c.club_id) lg.appendChild(logoEl(c.club_id, c.abbr));
+  const nm = el("span", "pl-nm"); nm.append(el("b", null, c.name), el("small", null, [{ U: "útočník", O: "obránce", G: "brankář" }[c.pos] || "", c.team || "bez klubu", c.age ? c.age + " let" : ""].filter(Boolean).join(", ")));
+  const st = el("span", "pl-st");
+  if (sk && !["ovr", "age", "pts", "form"].includes(sk)) st.append(el("b", null, String(c.attrs?.[sk] ?? "–")), el("small", null, sk));
+  else if (c.pos === "G") st.append(el("b", null, String(c.gp_season || 0)), el("small", null, "zápasů"));
+  else st.append(el("b", null, String(c.pts_season ?? 0)), el("small", null, `b. / ${c.gp_season || 0} z.`));
+  b.append(el("span", "pl-rk", String(rank)), ov, lg, nm, st);
+  b.setAttribute("aria-label", `${rank}. ${c.name}, OVR ${live}`);
+  b.addEventListener("click", () => openPlayer(c.player_id));
+  return b;
+}
+document.querySelectorAll("#c-layout button").forEach((x) => x.addEventListener("click", () => {
+  state.cLayout = x.dataset.l; state.cShow = x.dataset.l === "grid" ? 24 : 60;
+  document.querySelectorAll("#c-layout button").forEach((y) => y.setAttribute("aria-pressed", y === x));
+  $("#c-legend").hidden = x.dataset.l !== "grid";
+  try { localStorage.setItem("sl-c-layout", x.dataset.l); } catch (_) {}
+  renderCards();
+}));
+try { const l = localStorage.getItem("sl-c-layout"); if (l === "grid") { state.cLayout = "grid"; state.cShow = 24; document.querySelectorAll("#c-layout button").forEach((y) => y.setAttribute("aria-pressed", y.dataset.l === "grid")); } } catch (_) {}
+$("#c-legend").hidden = state.cLayout !== "grid";
+$("#c-search").addEventListener("input", () => { state.cShow = state.cLayout === "grid" ? 24 : 60; renderCards(); });
 $("#c-team").addEventListener("change", () => { state.cShow = 60; renderCards(); });
 $("#c-sort").addEventListener("change", renderCards);
 $("#c-active").addEventListener("change", renderCards);
-$("#c-more").addEventListener("click", () => { state.cShow += 60; renderCards(); });
+$("#c-more").addEventListener("click", () => { state.cShow += state.cLayout === "grid" ? 24 : 60; renderCards(); });
 document.querySelectorAll("#c-pos .chip").forEach((c) => c.addEventListener("click", () => {
   state.cPos = c.dataset.pos; state.cShow = 60; document.querySelectorAll("#c-pos .chip").forEach((x) => x.setAttribute("aria-pressed", x === c)); renderCards();
 }));
@@ -2062,6 +2142,7 @@ async function fyLoadPlayers(force) {
   const xm = Object.fromEntries(xp.map((x) => [x.player_id, x]));
   FY.players = pl.map((p) => ({ ...p, xp: xm[p.player_id] ? +xm[p.player_id].xp : null, opp: xm[p.player_id]?.opp || null, xgames: xm[p.player_id]?.games ?? 0 }));
   FY.byId = Object.fromEntries(FY.players.map((p) => [p.player_id, p]));
+  FY.round = await q("dash_fantasy_round_top", "select=*").catch(() => []);
 }
 async function fyLoadMe() {
   FY.me = await rpc("fantasy_me");
@@ -2126,12 +2207,13 @@ function fyRender() {
   const root = $("#fantasy-root"); if (!root) return;
   const kids = [];
   if (FY.msg) kids.push(el("div", "err-box", FY.msg));
-  if (!FY.session) kids.push(authCard(), rulesCard(true));
+  if (!FY.session) { kids.push(authCard()); const rc = roundCard(); if (rc) kids.push(rc); kids.push(rulesCard(true)); }
   else if (FY.loading && !FY.me) kids.push(el("p", "muted", "Načítám tvůj tým…"));
   else if (FY.me && !FY.me.team) kids.push(teamCard());
   else if (FY.me) {
     kids.push(headCard(), builderCard());
     if (FY.last) kids.push(lastCard());
+    const rc = roundCard(); if (rc) kids.push(rc);
     kids.push(leaguesCard(), rulesCard(false));
   }
   if (FY.session) {
@@ -2312,8 +2394,74 @@ function slotMenu(i) {
   B("Odebrat ze soupisky", () => { closeDet(); setDraft((x) => { x.players[i] = null; if (x.captain === id) x.captain = null; if (x.vice === id) x.vice = null; }); }, "btn alt");
   if (state.cards?.some((c) => c.player_id === id)) B("Karta hráče", () => openPlayer(id), "btn alt");
   box.appendChild(acts);
+  box.appendChild(fyHistory(id));
   $("#det-body").replaceChildren(box);
 }
+
+/* ---------- body hráče po zápasech ---------- */
+function fyHistory(id) {
+  const p = FY.byId[id], wrap = el("div", "fy-hist");
+  wrap.appendChild(el("h3", null, "Fantasy body po zápasech"));
+  if (p?.xp != null && p.opp) wrap.appendChild(el("p", "muted fy-small", `Příští kolo: vs ${p.opp}, očekáváme ${n1.format(p.xp)} b.`));
+  const body = el("div"); body.appendChild(el("p", "muted", "Načítám…")); wrap.appendChild(body);
+  q("dash_fantasy_player_matches", `select=*&player_id=eq.${encodeURIComponent(id)}&order=kickoff.asc`).then((rows) => {
+    if (!rows.length) { body.replaceChildren(el("p", "muted", "Letos zatím nenastoupil.")); return; }
+    const mx = Math.max(4, ...rows.map((r) => Math.abs(r.pts)));
+    const chart = el("div", "fy-bars");
+    for (const r of rows) {
+      const col = el("div", "fy-bar" + (r.pts < 0 ? " neg" : ""));
+      const bar = el("i"); bar.style.height = Math.max(3, Math.abs(r.pts) / mx * 100) + "%";
+      col.append(el("b", null, String(r.pts)), bar, el("small", null, r.opp || "?"));
+      col.title = `${r.gw ? r.gw + ". kolo, " : ""}${r.side === "H" ? "doma" : "venku"} vs ${r.opp} ${r.score}: ${r.pts} b.`;
+      chart.appendChild(col);
+    }
+    const G = p?.pos === "G" || rows[0].pos === "G";
+    const head = G ? ["Kolo", "Soupeř", "Skóre", "Zákroky", "Obdržel", "Body"] : ["Kolo", "Soupeř", "Skóre", "G", "A", "+/−", "Body"];
+    const trs = [...rows].reverse().map((r) => {
+      const res = el("span", r.won ? "res-w" : "res-l", r.score);
+      return G ? [r.gw ? r.gw + "." : "–", (r.side === "H" ? "" : "@") + (r.opp || "?"), res, String(r.sv), String(r.ga), el("b", null, String(r.pts))]
+               : [r.gw ? r.gw + "." : "–", (r.side === "H" ? "" : "@") + (r.opp || "?"), res, String(r.g), String(r.a), (r.pm > 0 ? "+" : "") + r.pm, el("b", null, String(r.pts))];
+    });
+    const sum = rows.reduce((a, r) => a + r.pts, 0);
+    body.replaceChildren(chart, el("p", "muted fy-small", `${rows.length} zápasů, celkem ${sum} b., průměr ${n1.format(sum / rows.length)} b.`), tableBox(head, trs, 3));
+  }).catch((e) => body.replaceChildren(el("div", "err-box", e.message)));
+  return wrap;
+}
+function fyPlayerSheet(id) {
+  const p = FY.byId[id]; if (!p) return;
+  openDet(p.name);
+  const box = el("div", "fy-menu");
+  box.appendChild(kvBox([["Pozice", POS_N[p.pos]], ["Klub", p.team || p.abbr || "–"], ["Cena", fyPrice(p.price)], ["Body", String(p.pts)], ["xP další kolo", p.xp != null ? n1.format(p.xp) : "–"], ["OVR", String(p.ovr ?? "–")]]));
+  box.appendChild(fyHistory(id));
+  $("#det-body").replaceChildren(box);
+}
+
+/* ---------- hráči kola ---------- */
+function roundCard() {
+  const R = FY.round; if (!R || !R.length) return null;
+  const c = el("div", "card fy-round");
+  const gw = R[0];
+  c.appendChild(el("h2", null, `Tým ${gw.label.replace(" kolo", " kola")}`));
+  c.appendChild(el("p", "note", gw.finished ? "Nejlepší možná sestava odehraného kola (1 brankář, 2 obránci, 3 útočníci)." : "Průběžně – kolo se ještě hraje. Nejlepší možná sestava podle dosud odehraných zápasů."));
+  const pick = (pos, n) => R.filter((r) => r.pos === pos).sort((a, b) => b.pts - a.pts).slice(0, n);
+  const best = [...pick("U", 3), ...pick("O", 2), ...pick("G", 1)];
+  const rink = el("div", "fy-rink fy-rink-sm");
+  const row = (list, cls) => { const r = el("div", "fy-line " + cls); for (const x of list) {
+      const b = el("button", "fy-slot"); b.type = "button";
+      const lg = el("span", "fy-logo"); lg.appendChild(logoEl(x.club_id, x.abbr));
+      b.append(lg, el("span", "fy-sn", surname(x.name)), el("span", "fy-sm", `${x.abbr || ""} · ${fyPrice(x.price)}`), el("span", "fy-pts", `${x.pts} b.`));
+      b.onclick = () => fyPlayerSheet(x.player_id); r.appendChild(b); } return r; };
+  rink.append(row(pick("U", 3), "u"), row(pick("O", 2), "o"), row(pick("G", 1), "g"));
+  c.append(rink, el("p", "muted fy-small", `Dohromady ${best.reduce((a, x) => a + x.pts, 0)} b. za ${fyPrice(best.reduce((a, x) => a + +x.price, 0))}.`));
+  const mine = new Set((FY.me?.squad?.players || []));
+  const top = [...R].sort((a, b) => b.pts - a.pts).slice(0, 10);
+  c.appendChild(tableBox(["Hráč", "Klub", "Body"], top.map((x) => {
+    const n = el("button", "fy-link fy-tn"); n.type = "button"; n.append(el("b", null, x.name)); if (mine.has(x.player_id)) n.appendChild(el("small", null, " · máš ho"));
+    n.onclick = () => fyPlayerSheet(x.player_id); return [n, x.abbr || "", el("b", null, String(x.pts))];
+  }), 2));
+  return c;
+}
+
 
 function openPicker(i) {
   const pos = SLOT_POS[i], d = FY.draft, R = FY.me.rules;
