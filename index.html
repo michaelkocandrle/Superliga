@@ -348,6 +348,91 @@ table.h2h td:focus-visible { outline: 2px solid var(--accent); }
 .vs-bar { display: flex; height: 10px; border-radius: 6px; overflow: hidden; margin-top: 8px; }
 .vs-bar i { display: block; }
 .offline-note { position: sticky; top: 0; z-index: 50; background: var(--warn); color: #fff; font-size: 13px; padding: 6px 16px; text-align: center; }
+/* ---------- fantasy ---------- */
+#fantasy-root { display: flex; flex-direction: column; gap: 16px; }
+.fy-auth { max-width: 520px; }
+.fy-form { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
+.fy-field { display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-weight: 600; color: var(--muted); }
+.fy-field .search { width: 100%; font-size: 16px; }
+.fy-hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.fy-err { color: var(--bad); font-size: 14px; margin: 0; min-height: 0; }
+.fy-err:empty { display: none; }
+.fy-small { font-size: 13px; margin: 6px 0 0; }
+.fy-link { all: unset; color: var(--accent); cursor: pointer; font-weight: 600; }
+.fy-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.fy-acc { font-size: 13px; text-align: center; }
+.btn:disabled { opacity: .45; cursor: default; filter: none; }
+.btn.alt { background: var(--panel-2); color: var(--ink); border: 1px solid var(--line); }
+.fy-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.fy-head h2 { font-size: 28px; }
+.fy-head .note { margin-bottom: 10px; }
+
+.fy-rink { position: relative; margin-top: 12px; border: 2px solid var(--line); border-radius: 18px; padding: 14px 8px;
+  background: radial-gradient(circle at 50% 0, color-mix(in srgb, var(--accent) 10%, transparent) 0 22%, transparent 22.5%),
+              linear-gradient(var(--panel-2), var(--panel-2)); display: flex; flex-direction: column; gap: 12px; }
+.fy-rink::before { content: ""; position: absolute; left: 50%; bottom: 0; width: 34%; height: 22%; transform: translateX(-50%); border: 2px solid var(--line); border-bottom: 0; border-radius: 6px 6px 0 0; }
+.fy-line { position: relative; display: flex; justify-content: center; gap: 8px; }
+.fy-slot { position: relative; font: inherit; color: var(--ink); width: min(31%, 132px); min-height: 108px; border: 1px solid var(--line); border-radius: 12px; background: var(--panel);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; padding: 8px 4px; cursor: pointer; box-shadow: 0 1px 2px rgb(0 0 0 / .06); }
+.fy-slot:hover { border-color: var(--muted); }
+.fy-slot.empty { border-style: dashed; border-width: 2px; background: transparent; color: var(--muted); }
+.fy-plus { font-family: var(--font-display); font-size: 30px; line-height: 1; }
+.fy-logo { width: 30px; height: 30px; display: grid; place-items: center; }
+.fy-logo img { max-width: 30px; max-height: 30px; object-fit: contain; }
+.fy-logo .ab { font-family: var(--font-display); font-weight: 700; font-size: 12px; border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; }
+.fy-sn { font-family: var(--font-display); font-weight: 600; font-size: 17px; line-height: 1.05; text-align: center; overflow-wrap: anywhere; max-width: 100%; }
+.fy-sm { font-size: 11.5px; color: var(--muted); }
+.fy-pts { font-family: var(--font-display); font-size: 14px; font-weight: 700; background: var(--ink); color: var(--panel); border-radius: 99px; padding: 0 7px; margin-top: 2px; }
+.fy-cap { position: absolute; top: 5px; right: 5px; width: 20px; height: 20px; border-radius: 50%; background: var(--warn); color: #fff; font-weight: 700; font-size: 12px; display: grid; place-items: center; }
+.fy-cap.v { background: var(--muted); }
+.fy-cap.inl { position: static; display: inline-grid; margin-left: 6px; width: 17px; height: 17px; font-size: 11px; vertical-align: 1px; }
+.fy-bench { margin-top: 10px; border: 1px dashed var(--line); border-radius: 14px; padding: 8px; display: flex; flex-direction: column; gap: 6px; }
+.fy-bench .cap { text-align: center; }
+.fy-line.b .fy-slot { width: min(24%, 120px); min-height: 96px; }
+.fy-budget { margin: 14px 0 0; display: flex; flex-direction: column; gap: 5px; font-size: 14px; }
+.fy-budget b.neg { color: var(--bad); }
+.fy-builder .btn { margin-top: 10px; }
+
+.fy-menu { display: flex; flex-direction: column; gap: 14px; }
+.fy-acts { display: flex; flex-direction: column; gap: 8px; }
+.fy-acts .btn { margin: 0; text-align: left; }
+.fy-sel { width: auto; }
+.fy-list-head { display: grid; grid-template-columns: 1fr 52px 74px; gap: 8px; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 600; padding: 0 10px; }
+.fy-list-head .r { text-align: right; }
+.fy-list { display: flex; flex-direction: column; gap: 6px; }
+.fy-pick { font: inherit; color: var(--ink); display: grid; grid-template-columns: 32px minmax(0, 1fr) 44px 74px; gap: 8px; align-items: center; text-align: left;
+  background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 7px 10px; cursor: pointer; }
+.fy-pick:hover:not(:disabled) { border-color: var(--accent); }
+.fy-pick:disabled { opacity: .5; cursor: default; }
+.fy-pn { display: flex; flex-direction: column; min-width: 0; }
+.fy-pn b { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.fy-pn small { color: var(--muted); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.fy-pp { font-family: var(--font-display); font-size: 19px; font-weight: 700; text-align: right; }
+.fy-pr { font-family: var(--font-display); font-size: 17px; font-weight: 600; text-align: right; }
+.fy-pick:disabled .fy-pr { font-family: var(--font-body); font-size: 12px; color: var(--bad); }
+
+.fy-leagues { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+.fy-league { font: inherit; color: var(--ink); display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: auto auto; gap: 0 10px; text-align: left;
+  border: 1px solid var(--line); border-radius: 10px; background: var(--panel-2); padding: 10px 12px; cursor: pointer; }
+.fy-league b { font-size: 16px; }
+.fy-league .muted { font-size: 13px; grid-row: 2; }
+.fy-league .fy-go { grid-row: 1 / 3; grid-column: 2; align-self: center; color: var(--accent); font-weight: 600; }
+.fy-lforms .fy-form { margin-top: 0; }
+.fy-share { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.fy-share .btn { margin: 0; }
+.fy-code { font-family: var(--font-display); font-size: 26px; letter-spacing: .12em; }
+.fy-tn { display: inline-flex; flex-direction: column; color: var(--ink); }
+.fy-tn small { color: var(--muted); font-weight: 400; }
+tr.fy-me td { background: color-mix(in srgb, var(--accent) 10%, transparent); }
+.fy-rules summary { font-family: var(--font-display); font-size: 22px; font-weight: 600; cursor: pointer; }
+.fy-rules h3 { font-size: 18px; margin-top: 12px; }
+.fy-rules ul { margin: 6px 0 0; padding-left: 20px; font-size: 14.5px; }
+.fy-rules li { margin: 3px 0; }
+.fy-toast { position: fixed; left: 50%; bottom: max(18px, env(safe-area-inset-bottom)); transform: translateX(-50%); z-index: 100; background: var(--ink); color: var(--panel);
+  padding: 10px 16px; border-radius: 10px; font-size: 14px; max-width: calc(100% - 32px); box-shadow: 0 6px 20px rgb(0 0 0 / .25); }
+.fy-toast.bad { background: var(--bad); color: #fff; }
+@media (max-width: 420px) { .fy-slot { min-height: 100px; } .fy-sn { font-size: 15px; } .fy-line.b .fy-slot { min-height: 90px; } }
+.fy-invite { background: color-mix(in srgb, var(--good) 14%, transparent); border-radius: 8px; padding: 8px 10px; font-size: 14px; margin: 0 0 10px; }
 </style>
 </head>
 <body>
@@ -387,6 +472,7 @@ table.h2h td:focus-visible { outline: 2px solid var(--accent); }
 
   <nav class="tabs" role="tablist" aria-label="Sekce">
     <button class="tab" role="tab" data-tab="zapasy" aria-selected="true">Zápasy</button>
+    <button class="tab" role="tab" data-tab="fantasy" aria-selected="false">Fantasy</button>
     <button class="tab" role="tab" data-tab="tabulka" aria-selected="false">Tabulka</button>
     <button class="tab" role="tab" data-tab="tymy" aria-selected="false">Týmy</button>
     <button class="tab" role="tab" data-tab="hraci" aria-selected="false">Hráči</button>
@@ -585,6 +671,8 @@ table.h2h td:focus-visible { outline: 2px solid var(--accent); }
   </section>
 
   <!-- ===================== JAK TO FUNGUJE ===================== -->
+  <section class="panel" id="fantasy" role="tabpanel" hidden aria-label="Fantasy"><div id="fantasy-root"></div></section>
+
   <section class="panel" id="jak" role="tabpanel" hidden>
     <div class="card prose">
       <h2>Jak to funguje</h2>
@@ -1800,6 +1888,490 @@ setTimeout(function chk() {
   b.textContent = "Jsi offline – zobrazuji naposledy stažená data (" + new Intl.DateTimeFormat("cs-CZ", { day: "numeric", month: "numeric", hour: "2-digit", minute: "2-digit" }).format(new Date(OFFLINE.at)) + ").";
   document.body.prepend(b);
 }, 2500);
+</script>
+<script>
+/* =====================================================================
+   FANTASY SUPERLIGA – přihlášení, sestava, ligy kamarádů
+   Používá globály z dashboardu: CONFIG, q, el, $, esc, state, openDet, closeDet, sec, tableBox, kvBox, logoEl, openPlayer, n1
+   ===================================================================== */
+const FY = {
+  SKEY: "sl-fantasy-session", PKEY: "sl-fantasy-join",
+  session: null, me: null, players: [], byId: {}, draft: null, dirty: false, loading: false, msg: null, authMode: "login",
+  last: null, // detail posledního kola
+};
+const POS_N = { G: "Brankář", O: "Obránce", U: "Útočník" };
+const POS_N4 = { G: "brankáře", O: "obránce", U: "útočníka" };
+const SLOT_POS = ["G", "O", "O", "U", "U", "U", "G", "O", "U", "U"];
+const fyPrice = (v) => n1.format(+v);
+const surname = (n) => { const p = String(n || "").trim().split(/\s+/); return p.length > 1 ? p.slice(1).join(" ") : p[0]; };
+const lsGet = (k) => { try { return JSON.parse(localStorage.getItem(k)); } catch (_) { return null; } };
+const lsSet = (k, v) => { try { v == null ? localStorage.removeItem(k) : localStorage.setItem(k, JSON.stringify(v)); } catch (_) {} };
+FY.session = lsGet(FY.SKEY);
+if (!FY.session && lsGet(FY.PKEY)) FY.authMode = "signup";
+{ const p = new URLSearchParams(location.search).get("liga"); if (p) { lsSet(FY.PKEY, p.toUpperCase()); history.replaceState?.(null, "", location.pathname + "#fantasy"); } }
+
+/* ---------- přihlášení (Supabase Auth přes REST) ---------- */
+function authErr(j, fallback) {
+  const m = j && (j.error_description || j.msg || j.message || j.error);
+  if (/invalid login|invalid_grant|credentials/i.test(m || "")) return "Špatný e-mail nebo heslo.";
+  if (/email not confirmed/i.test(m || "")) return "Účet ještě není potvrzený.";
+  return m || fallback;
+}
+async function fyAuth(grant, body) {
+  const r = await fetch(`${CONFIG.url}/auth/v1/token?grant_type=${grant}`, { method: "POST", headers: { apikey: CONFIG.key, "Content-Type": "application/json" }, body: JSON.stringify(body) });
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(authErr(j, "Přihlášení selhalo (" + r.status + ")."));
+  FY.session = { access_token: j.access_token, refresh_token: j.refresh_token, expires_at: j.expires_at || Math.floor(Date.now() / 1000) + (j.expires_in || 3600), email: j.user?.email };
+  lsSet(FY.SKEY, FY.session);
+}
+async function fyToken(force) {
+  if (!FY.session) return null;
+  if (force || Date.now() / 1000 > FY.session.expires_at - 60) {
+    try { await fyAuth("refresh_token", { refresh_token: FY.session.refresh_token }); }
+    catch (e) { fyLogout(); throw new Error("Přihlášení vypršelo, přihlas se znovu."); }
+  }
+  return FY.session.access_token;
+}
+async function rpc(fn, args = {}, retry = true) {
+  const t = await fyToken();
+  const r = await fetch(`${CONFIG.url}/rest/v1/rpc/${fn}`, { method: "POST", headers: { apikey: CONFIG.key, Authorization: "Bearer " + t, "Content-Type": "application/json" }, body: JSON.stringify(args) });
+  if (r.status === 401 && retry) { await fyToken(true); return rpc(fn, args, false); }
+  const txt = await r.text();
+  let j = null; try { j = txt ? JSON.parse(txt) : null; } catch (_) {}
+  if (!r.ok) throw new Error((j && (j.message || j.hint)) || "Chyba serveru (" + r.status + ").");
+  return j;
+}
+function fyLogout() { FY.session = null; FY.me = null; FY.draft = null; FY.dirty = false; lsSet(FY.SKEY, null); fyRender(); }
+
+/* ---------- data ---------- */
+async function fyLoadPlayers(force) {
+  if (FY.players.length && !force) return;
+  FY.players = await q("dash_fantasy_players", "select=*&order=price.desc");
+  FY.byId = Object.fromEntries(FY.players.map((p) => [p.player_id, p]));
+}
+async function fyLoadMe() {
+  FY.me = await rpc("fantasy_me");
+  const sq = FY.me.squad;
+  FY.draft = { players: sq ? [...sq.players] : Array(10).fill(null), captain: sq?.captain || null, vice: sq?.vice || null };
+  FY.dirty = false;
+  FY.last = null;
+  const lg = FY.me.last_gw, hist = FY.me.history || [];
+  if (FY.me.team && lg && hist.some((h) => h.gw === lg.gw)) FY.last = await rpc("fantasy_team_gw", { p_team: FY.me.team.team_id, p_gw: lg.gw }).catch(() => null);
+  const pend = lsGet(FY.PKEY);
+  if (pend && FY.me.team) {
+    lsSet(FY.PKEY, null);
+    try { const r = await rpc("fantasy_join_league", { p_code: pend }); toast(`Jsi v lize ${r.name}.`); FY.me = await rpc("fantasy_me"); }
+    catch (e) { toast(e.message, true); }
+  }
+}
+async function fyShow() {
+  if (FY.loading) return;
+  FY.loading = true; fyRender();
+  try {
+    await fyLoadPlayers();
+    if (FY.session) await fyLoadMe();
+    FY.msg = null;
+  } catch (e) { FY.msg = e.message; }
+  FY.loading = false; fyRender();
+}
+
+/* ---------- pomocné ---------- */
+function toast(text, bad) {
+  document.querySelectorAll(".fy-toast").forEach((x) => x.remove());
+  const t = el("div", "fy-toast" + (bad ? " bad" : ""), text);
+  document.body.appendChild(t); setTimeout(() => t.remove(), 3800);
+}
+const dtF = new Intl.DateTimeFormat("cs-CZ", { weekday: "short", day: "numeric", month: "numeric", hour: "2-digit", minute: "2-digit" });
+function untilTxt(iso) {
+  const ms = new Date(iso) - Date.now(); if (ms <= 0) return "uzavřeno";
+  const m = Math.round(ms / 60000), d = Math.floor(m / 1440), h = Math.floor((m % 1440) / 60);
+  return "za " + (d ? d + " d " : "") + (d || h ? h + " h" : "") + (d ? "" : " " + (m % 60) + " min");
+}
+function squadStats(d) {
+  const ids = d.players.filter(Boolean);
+  const spent = ids.reduce((s, id) => s + (+FY.byId[id]?.price || 0), 0);
+  const clubs = {}; ids.forEach((id) => { const c = FY.byId[id]?.club_id; clubs[c] = (clubs[c] || 0) + 1; });
+  const prev = FY.me?.prev_players;
+  const transfers = prev ? ids.filter((id) => !prev.includes(id)).length : 0;
+  return { n: ids.length, spent, clubs, transfers, cost: prev ? Math.max(0, transfers - FY.me.rules.free_transfers) * FY.me.rules.transfer_cost : 0, first: !prev };
+}
+function squadProblem(d) {
+  const s = squadStats(d), R = FY.me.rules;
+  if (s.n < 10) return `Doplň soupisku (${s.n}/10).`;
+  if (s.spent > R.budget + 1e-9) return `Překročený rozpočet o ${fyPrice(s.spent - R.budget)}.`;
+  const over = Object.entries(s.clubs).find(([, n]) => n > R.club_max);
+  if (over) return `Z jednoho klubu max. ${R.club_max} hráči (${clubAbbrF(+over[0])}).`;
+  if (!d.captain || !d.vice) return "Vyber kapitána a zástupce (klepni na hráče v základu).";
+  return null;
+}
+const clubAbbrF = (cid) => FY.players.find((p) => p.club_id === cid)?.abbr || "?";
+
+/* ---------- vykreslení ---------- */
+function fyRender() {
+  const root = $("#fantasy-root"); if (!root) return;
+  const kids = [];
+  if (FY.msg) kids.push(el("div", "err-box", FY.msg));
+  if (!FY.session) kids.push(authCard(), rulesCard(true));
+  else if (FY.loading && !FY.me) kids.push(el("p", "muted", "Načítám tvůj tým…"));
+  else if (FY.me && !FY.me.team) kids.push(teamCard());
+  else if (FY.me) {
+    kids.push(headCard(), builderCard());
+    if (FY.last) kids.push(lastCard());
+    kids.push(leaguesCard(), rulesCard(false));
+  }
+  if (FY.session) {
+    const acc = el("p", "muted fy-acc"); acc.append(`Přihlášen jako ${FY.session.email || "?"} · `);
+    const lo = el("button", "fy-link", "Odhlásit"); lo.type = "button"; lo.onclick = fyLogout; acc.appendChild(lo); kids.push(acc);
+  }
+  root.replaceChildren(...kids);
+}
+
+function field(label, input) { const l = el("label", "fy-field"); l.append(el("span", null, label), input); return l; }
+function inputEl(type, name, attrs = {}) { const i = el("input", "search"); i.type = type; i.name = name; Object.assign(i, attrs); return i; }
+
+function authCard() {
+  const c = el("div", "card fy-auth");
+  c.appendChild(el("h2", null, "Fantasy Superliga"));
+  c.appendChild(el("p", "note", "Poskládej si tým z hráčů Superligy, sbírej body podle jejich výkonů a poměř se s kamarády v soukromé lize."));
+  if (lsGet(FY.PKEY)) c.appendChild(el("p", "fy-invite", `Máš pozvánku do ligy (kód ${lsGet(FY.PKEY)}). Po přihlášení tě do ní rovnou přidáme.`));
+  const seg = el("div", "chips");
+  for (const [m, t] of [["login", "Mám účet"], ["signup", "Nový účet"]]) {
+    const b = el("button", "chip", t); b.type = "button"; b.setAttribute("aria-pressed", FY.authMode === m);
+    b.onclick = () => { FY.authMode = m; fyRender(); }; seg.appendChild(b);
+  }
+  const f = el("form", "fy-form");
+  const email = inputEl("email", "email", { autocomplete: "email", required: true, placeholder: "tvuj@email.cz" });
+  const pw = inputEl("password", "password", { autocomplete: FY.authMode === "login" ? "current-password" : "new-password", required: true, minLength: 6, placeholder: FY.authMode === "login" ? "heslo" : "aspoň 6 znaků" });
+  const hp = inputEl("text", "website", { tabIndex: -1, autocomplete: "off" }); hp.className = "fy-hp"; hp.setAttribute("aria-hidden", "true");
+  const btn = el("button", "btn", FY.authMode === "login" ? "Přihlásit se" : "Založit účet a hrát"); btn.type = "submit";
+  const err = el("p", "fy-err");
+  f.append(field("E-mail", email), field("Heslo", pw), hp, btn, err);
+  if (FY.authMode === "signup") f.appendChild(el("p", "muted fy-small", "Žádný potvrzovací e-mail nechodí – po založení rovnou hraješ. Heslo si zapamatuj."));
+  f.onsubmit = async (e) => {
+    e.preventDefault(); btn.disabled = true; err.textContent = "";
+    try {
+      if (FY.authMode === "signup") {
+        const r = await fetch(`${CONFIG.url}/functions/v1/fantasy-auth`, { method: "POST", headers: { apikey: CONFIG.key, Authorization: "Bearer " + CONFIG.key, "Content-Type": "application/json" }, body: JSON.stringify({ email: email.value, password: pw.value, website: hp.value }) });
+        const j = await r.json().catch(() => ({}));
+        if (!r.ok) throw new Error(j.error || "Účet se nepodařilo založit.");
+      }
+      await fyAuth("password", { email: email.value.trim().toLowerCase(), password: pw.value });
+      await fyShow();
+    } catch (ex) { err.textContent = ex.message; btn.disabled = false; }
+  };
+  c.append(seg, f);
+  return c;
+}
+
+function teamCard() {
+  const c = el("div", "card fy-auth");
+  c.appendChild(el("h2", null, "Založ si tým"));
+  c.appendChild(el("p", "note", "Název uvidí ostatní v tabulkách lig. Obojí půjde později změnit."));
+  const f = el("form", "fy-form");
+  const name = inputEl("text", "team", { required: true, minLength: 2, maxLength: 30, placeholder: "např. FBC Gaučáci" });
+  const man = inputEl("text", "manager", { required: true, minLength: 2, maxLength: 30, placeholder: "tvoje jméno nebo přezdívka" });
+  const btn = el("button", "btn", "Pokračovat na výběr hráčů"); btn.type = "submit";
+  const err = el("p", "fy-err");
+  f.append(field("Název týmu", name), field("Manažer", man), btn, err);
+  f.onsubmit = async (e) => {
+    e.preventDefault(); btn.disabled = true;
+    try { await rpc("fantasy_create_team", { p_name: name.value, p_manager: man.value }); await fyShow(); }
+    catch (ex) { err.textContent = ex.message; btn.disabled = false; }
+  };
+  c.appendChild(f);
+  return c;
+}
+
+function headCard() {
+  const me = FY.me, hist = me.history || [];
+  const total = hist.reduce((s, h) => s + h.pts, 0), lastH = hist[hist.length - 1];
+  const c = el("div", "card fy-head");
+  const top = el("div", "fy-head-top");
+  const t = el("div"); t.append(el("h2", null, me.team.name), el("p", "note", "Manažer " + me.team.manager));
+  const ren = el("button", "fy-link", "Upravit"); ren.type = "button"; ren.onclick = renameTeam; t.querySelector(".note").append(" · ", ren);
+  top.append(t);
+  c.appendChild(top);
+  const items = [["Celkem bodů", String(total)], ["Poslední kolo", lastH ? String(lastH.pts) : "–"]];
+  if (me.open_gw) items.push(["Uzávěrka " + me.open_gw.label, untilTxt(me.open_gw.deadline)]);
+  c.appendChild(kvBox(items));
+  if (me.open_gw) c.appendChild(el("p", "muted fy-small", `Sestavu na ${me.open_gw.label} můžeš měnit do ${dtF.format(new Date(me.open_gw.deadline))} (začátek prvního zápasu kola).`));
+  return c;
+}
+function renameTeam() {
+  openDet("Upravit tým");
+  const f = el("form", "fy-form");
+  const name = inputEl("text", "team", { required: true, minLength: 2, maxLength: 30, value: FY.me.team.name });
+  const man = inputEl("text", "manager", { required: true, minLength: 2, maxLength: 30, value: FY.me.team.manager });
+  const btn = el("button", "btn", "Uložit"); btn.type = "submit"; const err = el("p", "fy-err");
+  f.append(field("Název týmu", name), field("Manažer", man), btn, err);
+  f.onsubmit = async (e) => { e.preventDefault(); try { await rpc("fantasy_create_team", { p_name: name.value, p_manager: man.value }); FY.me.team.name = name.value.trim(); FY.me.team.manager = man.value.trim(); closeDet(); fyRender(); } catch (ex) { err.textContent = ex.message; } };
+  $("#det-body").replaceChildren(f);
+}
+
+/* ---------- sestava ---------- */
+function slotTile(i) {
+  const d = FY.draft, id = d.players[i], p = id && FY.byId[id];
+  const b = el("button", "fy-slot" + (p ? "" : " empty") + (i >= 6 ? " bench" : "")); b.type = "button";
+  if (!p) {
+    b.append(el("span", "fy-plus", "+"), el("span", "fy-sn", POS_N[SLOT_POS[i]]));
+    b.onclick = () => openPicker(i);
+    return b;
+  }
+  const lg = el("span", "fy-logo"); lg.appendChild(logoEl(p.club_id, p.abbr));
+  b.append(lg, el("span", "fy-sn", surname(p.name)), el("span", "fy-sm", `${p.abbr || ""} · ${fyPrice(p.price)}`), el("span", "fy-pts", `${p.pts} b.`));
+  if (d.captain === id) b.appendChild(el("span", "fy-cap", "C"));
+  else if (d.vice === id) b.appendChild(el("span", "fy-cap v", "Z"));
+  b.onclick = () => slotMenu(i);
+  return b;
+}
+function builderCard() {
+  const me = FY.me, d = FY.draft, R = me.rules, s = squadStats(d);
+  const c = el("div", "card fy-builder");
+  const h = el("div", "fy-row");
+  h.append(el("h2", null, me.open_gw ? "Sestava na " + me.open_gw.label : "Sestava"));
+  c.appendChild(h);
+  if (!me.open_gw) { c.appendChild(el("p", "note", "Žádné další kolo základní části – sestavy jsou uzavřené.")); }
+  const rink = el("div", "fy-rink");
+  const row = (idx, cls) => { const r = el("div", "fy-line " + cls); idx.forEach((i) => r.appendChild(slotTile(i))); return r; };
+  rink.append(row([3, 4, 5], "u"), row([1, 2], "o"), row([0], "g"));
+  const bench = el("div", "fy-bench"); bench.appendChild(el("span", "cap", "Lavička – střídá, když hráč ze základu v kole nenastoupí"));
+  bench.appendChild(row([6, 7, 8, 9], "b"));
+  c.append(rink, bench);
+
+  // rozpočet a přestupy
+  const left = R.budget - s.spent;
+  const bud = el("div", "fy-budget");
+  const bar = el("div", "bar"); const i = el("i"); i.style.width = Math.min(100, (s.spent / R.budget) * 100) + "%"; i.style.background = left < 0 ? "var(--bad)" : "var(--accent)"; bar.appendChild(i);
+  bud.append(el("div", "fy-row", ""), bar);
+  bud.firstChild.append(el("span", null, `Utraceno ${fyPrice(s.spent)} z ${fyPrice(R.budget)}`), el("b", left < 0 ? "neg" : "", `zbývá ${fyPrice(left)}`));
+  c.appendChild(bud);
+  c.appendChild(el("p", "muted fy-small", s.first ? "Před prvním kolem měníš hráče zdarma a bez omezení." :
+    `Přestupy v tomto kole: ${s.transfers} (zdarma ${R.free_transfers}${s.cost ? `, srážka −${s.cost} b.` : ""}).`));
+
+  const prob = squadProblem(d);
+  const act = el("div", "fy-row");
+  const save = el("button", "btn", FY.dirty ? "Uložit sestavu" : "Sestava uložena ✓"); save.type = "button";
+  save.disabled = !!prob || !FY.dirty || !me.open_gw;
+  save.onclick = async () => {
+    save.disabled = true;
+    try {
+      const r = await rpc("fantasy_save_squad", { p_players: d.players, p_captain: d.captain, p_vice: d.vice });
+      toast(`Uloženo na ${r.gw}. kolo${r.cost ? ` (srážka −${r.cost} b.)` : ""}.`);
+      FY.me = await rpc("fantasy_me"); FY.dirty = false; fyRender();
+      fyLoadPlayers(true).then(fyRender).catch(() => {});
+    } catch (e) { toast(e.message, true); save.disabled = false; }
+  };
+  act.appendChild(save);
+  if (FY.dirty && FY.me.squad) { const rv = el("button", "fy-link", "Zahodit změny"); rv.type = "button"; rv.onclick = () => { FY.draft = { players: [...FY.me.squad.players], captain: FY.me.squad.captain, vice: FY.me.squad.vice }; FY.dirty = false; fyRender(); }; act.appendChild(rv); }
+  if (!d.players.some(Boolean)) { const au = el("button", "fy-link", "Vybrat za mě"); au.type = "button"; au.onclick = autoPick; act.appendChild(au); }
+  c.appendChild(act);
+  if (prob && me.open_gw) c.appendChild(el("p", "fy-err", prob));
+  return c;
+}
+function setDraft(fn) { fn(FY.draft); FY.dirty = true; fyRender(); }
+
+function slotMenu(i) {
+  const d = FY.draft, id = d.players[i], p = FY.byId[id];
+  openDet(p.name);
+  const box = el("div", "fy-menu");
+  box.appendChild(kvBox([["Pozice", POS_N[p.pos]], ["Klub", p.team || p.abbr || "–"], ["Cena", fyPrice(p.price)], ["Body", String(p.pts)], ["Body/zápas", p.ppg != null ? n1.format(p.ppg) : "–"], ["OVR", String(p.ovr ?? "–")]]));
+  const acts = el("div", "fy-acts");
+  const B = (t, fn, cls = "btn") => { const b = el("button", cls, t); b.type = "button"; b.onclick = () => { fn(); }; acts.appendChild(b); return b; };
+  B("Vyměnit hráče", () => openPicker(i));
+  if (i < 6) {
+    if (d.captain !== id) B("Udělat kapitánem (×2)", () => { closeDet(); setDraft((x) => { if (x.vice === id) x.vice = x.captain; x.captain = id; }); }, "btn alt");
+    if (d.vice !== id && d.captain !== id) B("Udělat zástupcem", () => { closeDet(); setDraft((x) => { x.vice = id; }); }, "btn alt");
+  }
+  const same = SLOT_POS.map((pp, j) => j).filter((j) => j !== i && SLOT_POS[j] === SLOT_POS[i] && (i < 6) !== (j < 6));
+  for (const j of same) {
+    const o = d.players[j] && FY.byId[d.players[j]];
+    B(i < 6 ? `Na lavičku ↔ ${o ? surname(o.name) : "prázdné místo"}` : `Do základu ↔ ${o ? surname(o.name) : "prázdné místo"}`, () => {
+      closeDet(); setDraft((x) => { [x.players[i], x.players[j]] = [x.players[j], x.players[i]]; for (const k of ["captain", "vice"]) if (x[k] && x.players.indexOf(x[k]) > 5) x[k] = null; });
+    }, "btn alt");
+  }
+  B("Odebrat ze soupisky", () => { closeDet(); setDraft((x) => { x.players[i] = null; if (x.captain === id) x.captain = null; if (x.vice === id) x.vice = null; }); }, "btn alt");
+  if (state.cards?.some((c) => c.player_id === id)) B("Karta hráče", () => openPlayer(id), "btn alt");
+  box.appendChild(acts);
+  $("#det-body").replaceChildren(box);
+}
+
+function openPicker(i) {
+  const pos = SLOT_POS[i], d = FY.draft, R = FY.me.rules;
+  const cur = d.players[i];
+  const s = squadStats(d); const budgetLeft = R.budget - s.spent + (cur ? +FY.byId[cur].price : 0);
+  openDet("Vyber " + POS_N4[pos]);
+  const st = { q: "", sort: "pts", club: "" };
+  const tools = el("div", "tools");
+  const search = inputEl("search", "q", { placeholder: "Hledat jméno…" });
+  const sorts = el("div", "chips");
+  for (const [k, t] of [["pts", "Body"], ["ppg", "Body/zápas"], ["price", "Cena"], ["ovr", "OVR"], ["selected", "Oblíbenost"]]) {
+    const b = el("button", "chip", t); b.type = "button"; b.dataset.k = k; b.setAttribute("aria-pressed", k === st.sort);
+    b.onclick = () => { st.sort = k; sorts.querySelectorAll(".chip").forEach((x) => x.setAttribute("aria-pressed", x === b)); draw(); }; sorts.appendChild(b);
+  }
+  const clubSel = el("select", "search fy-sel"); clubSel.appendChild(new Option("Všechny kluby", ""));
+  [...new Map(FY.players.map((p) => [p.club_id, p.team || p.abbr])).entries()].sort((a, b) => String(a[1]).localeCompare(b[1], "cs")).forEach(([cid, n]) => clubSel.appendChild(new Option(n, cid)));
+  tools.append(search, clubSel, sorts);
+  const info = el("p", "muted fy-small", `Zbývá ${fyPrice(budgetLeft)} · max. ${R.club_max} hráči z jednoho klubu`);
+  const list = el("div", "fy-list");
+  const draw = () => {
+    const norm = (x) => x.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+    const qq = norm(st.q);
+    let rows = FY.players.filter((p) => p.pos === pos && (!qq || norm(p.name).includes(qq)) && (!st.club || String(p.club_id) === st.club));
+    const whyOf = (p) => {
+      const clubN = (s.clubs[p.club_id] || 0) - (cur && FY.byId[cur].club_id === p.club_id ? 1 : 0);
+      return d.players.includes(p.player_id) ? "v soupisce" : +p.price > budgetLeft + 1e-9 ? "drahý" : clubN >= R.club_max ? "max. z klubu" : null;
+    };
+    rows.sort((a, b) => (!!whyOf(a) - !!whyOf(b)) || (+(b[st.sort] ?? -1)) - (+(a[st.sort] ?? -1)) || b.price - a.price);
+    rows = rows.slice(0, 80);
+    list.replaceChildren(...rows.map((p) => {
+      const why = whyOf(p);
+      const b = el("button", "fy-pick"); b.type = "button"; b.disabled = !!why;
+      const lg = el("span", "fy-logo"); lg.appendChild(logoEl(p.club_id, p.abbr));
+      const nm = el("span", "fy-pn"); nm.append(el("b", null, p.name), el("small", null, `${p.abbr || ""} · OVR ${p.ovr ?? "–"} · ${p.gp} záp. · ${p.ppg != null ? n1.format(p.ppg) : "–"} b./z.${p.selected ? " · vybralo " + p.selected : ""}`));
+      b.append(lg, nm, el("span", "fy-pp", String(p.pts)), el("span", "fy-pr", why || fyPrice(p.price)));
+      b.onclick = () => { closeDet(); setDraft((x) => { const old = x.players[i]; x.players[i] = p.player_id; if (old && x.captain === old) x.captain = i < 6 ? p.player_id : null; if (old && x.vice === old) x.vice = i < 6 ? p.player_id : null; }); };
+      return b;
+    }));
+    if (!rows.length) list.appendChild(el("p", "muted", "Nic nenalezeno."));
+  };
+  search.oninput = () => { st.q = search.value; draw(); };
+  clubSel.onchange = () => { st.club = clubSel.value; draw(); };
+  const head = el("div", "fy-list-head"); head.append(el("span", null, "Hráč"), el("span", "r", "Body"), el("span", "r", "Cena"));
+  $("#det-body").replaceChildren(tools, info, head, list);
+  draw();
+}
+
+function autoPick() { // hladový návrh: hodnota hráče, rozpočet rozložený mezi zbývající místa, limit klubu
+  const R = FY.me.rules, d = { players: Array(10).fill(null), captain: null, vice: null };
+  const val = (p) => (p.ppg ?? 0) * Math.min(1, p.gp / 4) + ((p.ovr || 60) - 55) / 8;
+  const minP = {}; for (const p of FY.players) minP[p.pos] = Math.min(minP[p.pos] ?? 99, +p.price);
+  const order = [3, 4, 5, 1, 2, 0, 6, 7, 8, 9];
+  const clubs = {}; let spent = 0;
+  order.forEach((slot, k) => {
+    const pos = SLOT_POS[slot], rest = order.slice(k + 1);
+    const reserve = rest.reduce((s, j) => s + minP[SLOT_POS[j]], 0);
+    const startersLeft = rest.filter((j) => j < 6).length + 1;
+    const room = R.budget - spent - reserve;
+    const cap = slot < 6 ? Math.min(room, minP[pos] + (room - minP[pos]) * (1.5 / startersLeft)) : room;
+    const cand = FY.players.filter((p) => p.pos === pos && !d.players.includes(p.player_id) && (clubs[p.club_id] || 0) < R.club_max && +p.price <= cap + 1e-9);
+    cand.sort((a, b) => slot < 6 ? val(b) - val(a) : val(b) / b.price - val(a) / a.price);
+    const p = cand[0]; if (!p) return;
+    d.players[slot] = p.player_id; spent += +p.price; clubs[p.club_id] = (clubs[p.club_id] || 0) + 1;
+  });
+  const st = d.players.slice(0, 6).filter(Boolean).sort((a, b) => val(FY.byId[b]) - val(FY.byId[a]));
+  d.captain = st[0] || null; d.vice = st[1] || null;
+  FY.draft = d; FY.dirty = true; fyRender();
+  toast("Navrhl jsem sestavu – uprav si ji a ulož.");
+}
+
+/* ---------- poslední kolo ---------- */
+function lastCard() {
+  const L = FY.last, c = el("div", "card");
+  c.appendChild(el("h2", null, `${FY.me.last_gw.label}: ${L.pts ?? 0} b.`));
+  c.appendChild(el("p", "note", "Body hráčů v kole. Kapitán ×2; když hráč ze základu nenastoupil, počítá se náhradník z lavičky na stejné pozici."));
+  c.appendChild(detailTable(L));
+  return c;
+}
+function detailTable(L) {
+  const rows = (L.detail || []).map((r) => {
+    const p = FY.byId[r.player_id]; const nm = el("span"); nm.append(p ? p.name : r.player_id);
+    if (r.mult === 2) nm.appendChild(el("span", "fy-cap inl", "C"));
+    const st = r.slot > 6 ? (r.counted ? "střídal" : "lavička") : r.played ? "" : "nehrál";
+    return [nm, POS_N[r.pos][0], st, r.counted ? String(r.pts * r.mult) : el("span", "muted", String(r.pts))];
+  });
+  if (L.squad?.cost) rows.push([el("i", null, "srážka za přestupy"), "", "", "−" + L.squad.cost]);
+  return tableBox(["Hráč", "Poz.", "", "Body"], rows, 3);
+}
+
+/* ---------- ligy ---------- */
+function leaguesCard() {
+  const c = el("div", "card");
+  c.appendChild(el("h2", null, "Ligy"));
+  c.appendChild(el("p", "note", "Založ ligu a pošli kamarádům odkaz – po přihlášení se do ní přidají sami."));
+  const list = el("div", "fy-leagues");
+  for (const l of FY.me.leagues || []) {
+    const b = el("button", "fy-league"); b.type = "button";
+    b.append(el("b", null, l.name), el("span", "muted", `${l.members} ${l.members === 1 ? "tým" : l.members < 5 ? "týmy" : "týmů"}${l.is_global ? "" : " · kód " + l.code}`), el("span", "fy-go", "Tabulka ›"));
+    b.onclick = () => openLeague(l);
+    list.appendChild(b);
+  }
+  c.appendChild(list);
+  const g = el("div", "grid2 fy-lforms");
+  const mk = el("form", "fy-form"); const nm = inputEl("text", "league", { required: true, minLength: 2, maxLength: 40, placeholder: "např. Kancl 2026" });
+  const b1 = el("button", "btn", "Založit ligu"); b1.type = "submit"; mk.append(field("Nová liga", nm), b1);
+  mk.onsubmit = async (e) => { e.preventDefault(); b1.disabled = true; try { const r = await rpc("fantasy_create_league", { p_name: nm.value }); FY.me = await rpc("fantasy_me"); fyRender(); const l = FY.me.leagues.find((x) => x.league_id === r.league_id); if (l) openLeague(l); } catch (ex) { toast(ex.message, true); b1.disabled = false; } };
+  const jn = el("form", "fy-form"); const code = inputEl("text", "code", { required: true, minLength: 6, maxLength: 12, placeholder: "kód od kamaráda", autocapitalize: "characters" });
+  const b2 = el("button", "btn", "Připojit se"); b2.type = "submit"; jn.append(field("Mám kód ligy", code), b2);
+  jn.onsubmit = async (e) => { e.preventDefault(); b2.disabled = true; try { const r = await rpc("fantasy_join_league", { p_code: code.value }); toast(`Jsi v lize ${r.name}.`); FY.me = await rpc("fantasy_me"); fyRender(); } catch (ex) { toast(ex.message, true); b2.disabled = false; } };
+  g.append(mk, jn); c.appendChild(g);
+  return c;
+}
+function inviteLink(code) { return location.origin + location.pathname + "?liga=" + code; }
+async function openLeague(l) {
+  openDet(l.name);
+  const kids = [];
+  if (!l.is_global) {
+    const share = el("div", "fy-share");
+    share.append(el("span", null, "Kód "), el("b", "fy-code", l.code));
+    const sb = el("button", "btn", "Pozvat kamarády"); sb.type = "button";
+    sb.onclick = async () => {
+      const url = inviteLink(l.code), text = `Přidej se do mé fantasy ligy „${l.name}“ v Superliga predikce: ${url}`;
+      try { if (navigator.share) await navigator.share({ title: "Fantasy Superliga", text, url }); else { await navigator.clipboard.writeText(text); toast("Odkaz zkopírován – pošli ho kamarádům."); } } catch (_) {}
+    };
+    share.appendChild(sb);
+    kids.push(share);
+  }
+  const tb = el("div"); tb.appendChild(el("p", "muted", "Načítám tabulku…")); kids.push(tb);
+  if (!l.is_global) { const lv = el("button", "fy-link", "Opustit ligu"); lv.type = "button"; lv.onclick = async () => { try { await rpc("fantasy_leave_league", { p_league: l.league_id }); closeDet(); FY.me = await rpc("fantasy_me"); fyRender(); } catch (e) { toast(e.message, true); } }; kids.push(lv); }
+  $("#det-body").replaceChildren(...kids);
+  try {
+    const rows = await rpc("fantasy_league_table", { p_league: l.league_id });
+    const lg = rows[0]?.last_gw;
+    const t = tableBox(["#", "Tým", lg ? lg + ". kolo" : "Kolo", "Celkem"], rows.map((r) => {
+      const n = el("button", "fy-link fy-tn"); n.type = "button"; n.append(el("b", null, r.name), el("small", null, " " + r.manager));
+      n.onclick = () => openTeam(r, lg);
+      return [String(r.rank), n, String(r.last_pts), el("b", null, String(r.total))];
+    }), 2);
+    t.querySelectorAll("tbody tr").forEach((tr, k) => { if (rows[k].me) tr.classList.add("fy-me"); });
+    tb.replaceChildren(t, el("p", "muted fy-small", "Klepni na tým a uvidíš jeho sestavu z posledního odehraného kola."));
+  } catch (e) { tb.replaceChildren(el("div", "err-box", e.message)); }
+}
+async function openTeam(r, gw) {
+  openDet(r.name);
+  if (!gw) { $("#det-body").replaceChildren(el("p", "muted", "Zatím se neodehrálo žádné kolo.")); return; }
+  try {
+    const L = await rpc("fantasy_team_gw", { p_team: r.team_id, p_gw: gw });
+    if (!L.squad) { $("#det-body").replaceChildren(el("p", "muted", "V tomto kole tým ještě neměl sestavu.")); return; }
+    $("#det-body").replaceChildren(sec(`${gw}. kolo: ${L.pts ?? 0} b.`, "Manažer " + r.manager, detailTable(L)));
+  } catch (e) { $("#det-body").replaceChildren(el("div", "err-box", e.message)); }
+}
+
+/* ---------- pravidla ---------- */
+function rulesCard(open) {
+  const c = el("details", "card fy-rules"); c.open = !!open;
+  c.appendChild(el("summary", null, "Pravidla a bodování"));
+  const ul = (items) => { const u = el("ul"); items.forEach((t) => u.appendChild(el("li", null, t))); return u; };
+  c.append(
+    el("h3", null, "Tým"),
+    ul(["Soupiska 10 hráčů: 2 brankáři, 3 obránci, 5 útočníků. Rozpočet 75,0; ceny jsou podle síly hráče (OVR).",
+      "Hraje základ 1 + 2 + 3 (brankář, 2 obránci, 3 útočníci). Lavička (1 + 1 + 2) střídá, když hráč ze základu v kole nenastoupí.",
+      "Nejvýš 3 hráči z jednoho klubu. Kapitán má body dvojnásobně; nenastoupí-li, zdvojnásobí se zástupce.",
+      "Sestavu na kolo měníš do začátku jeho prvního zápasu. Uložená sestava platí i pro další kola, dokud ji nezměníš.",
+      "Přestupy: před prvním kolem bez omezení, pak 2 zdarma na kolo, každý další −4 body. Přesuny mezi základem a lavičkou jsou zdarma."]),
+    el("h3", null, "Body hráčů v poli"),
+    ul(["nastoupil +1 · výhra týmu +1", "gól: útočník +3, obránce +4 · asistence +2 · hattrick +2 navíc",
+      "plus/minus: +1 / −1 za každý bod bilance (max. ±3)", "trestné minuty: −1 za každé 2 minuty (max. −3)"]),
+    el("h3", null, "Body brankářů"),
+    ul(["chytal +2 · výhra +2 · každé 4 zákroky +1", "obdržené góly: 0 → +6, 1–2 → +3, 3–4 → +1, 5–6 → −1, 7 a víc → −3",
+      "asistence +2 · gól +8"]),
+    el("p", "muted fy-small", "Body se počítají ze zápisů zápasů hned, jak jsou zápasy odehrané a stažené. Odložený zápas se započítá do kola, ve kterém se skutečně hraje."));
+  return c;
+}
+
+/* ---------- napojení na záložku ---------- */
+document.querySelector('.tab[data-tab="fantasy"]')?.addEventListener("click", fyShow);
+if (location.hash === "#fantasy" || lsGet(FY.PKEY)) { showTab("fantasy"); fyShow(); }
+setInterval(() => { if (!document.getElementById("fantasy").hidden && FY.me?.open_gw && new Date(FY.me.open_gw.deadline) < Date.now()) fyShow(); }, 60000);
 </script>
 </body>
 </html>
