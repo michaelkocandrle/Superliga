@@ -347,6 +347,73 @@ table.h2h td:focus-visible { outline: 2px solid var(--accent); }
 .vs-head .big { font-family: var(--font-display); font-size: 34px; font-weight: 700; }
 .vs-bar { display: flex; height: 10px; border-radius: 6px; overflow: hidden; margin-top: 8px; }
 .vs-bar i { display: block; }
+
+/* =====================================================================
+   APLIKAČNÍ RÁM (v5): kompaktní lepkavá hlavička, na mobilu spodní lišta
+   ===================================================================== */
+.top { position: sticky; top: 0; z-index: 30; background: color-mix(in srgb, var(--panel) 92%, transparent); backdrop-filter: saturate(1.4) blur(10px); -webkit-backdrop-filter: saturate(1.4) blur(10px); }
+.top svg.rink { opacity: .45; }
+.top .wrap.top-row { padding-block: 10px 6px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: nowrap; }
+.brand { display: flex; align-items: center; gap: 9px; color: var(--ink); text-decoration: none; min-width: 0; }
+.brand-mark { width: 30px; height: 30px; color: var(--accent); flex: none; }
+.brand-t { font-family: var(--font-display); font-size: 28px; font-weight: 700; line-height: 1; letter-spacing: .005em; white-space: nowrap; }
+.brand-t span { font-weight: 500; color: var(--muted); }
+.status { flex-wrap: nowrap; align-items: center; gap: 14px; font-size: 13px; white-space: nowrap; }
+.theme-btn { width: 34px; height: 34px; padding: 0; display: grid; place-items: center; border-radius: 50%; color: var(--ink); }
+.theme-btn svg { width: 18px; height: 18px; }
+.nav-wrap { padding-block: 0 !important; }
+.tabs { margin: 0; border-bottom: 0; gap: 2px; scrollbar-width: none; }
+.tabs::-webkit-scrollbar { display: none; }
+.tab { text-transform: none; letter-spacing: 0; font-size: 19px; padding: 8px 12px 9px; display: inline-flex; align-items: center; gap: 7px; }
+.tab svg { width: 20px; height: 20px; flex: none; }
+.tab.sec { color: color-mix(in srgb, var(--muted) 85%, transparent); }
+.tab-more { display: none; }
+main.wrap { padding-top: 18px; }
+.hero { margin: 0; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.hero .card { padding: 14px 16px; gap: 2px; }
+.hero-l { font-size: 13.5px; font-weight: 600; color: var(--muted); }
+.hero .big { font-size: 42px; }
+.hero .hero-team { font-size: 23px; }
+.hero .muted { font-size: 13px; }
+.more-sheet[hidden] { display: none; }
+.fc-live { right: 40px; }
+
+.top svg.rink { display: none; }
+.howto { max-width: 70ch; }
+.howto summary { cursor: pointer; color: var(--accent); font-weight: 600; font-size: 14px; list-style: none; }
+.howto summary::-webkit-details-marker { display: none; }
+.howto summary::before { content: "ⓘ "; }
+.howto p { margin: 6px 0 0; font-size: 14px; }
+@media (max-width: 479px) { .brand-t span { display: none; } .status { gap: 8px; font-size: 12.5px; } }
+@media (max-width: 899px) {
+  .status .st-x { display: none; }
+  .hero { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; margin-inline: -16px; padding: 0 16px 6px; scrollbar-width: none; }
+  .hero::-webkit-scrollbar { display: none; }
+  .hero .card { flex: 0 0 min(82%, 340px); scroll-snap-align: start; }
+}
+@media (max-width: 759px) {
+  body { padding-bottom: calc(68px + env(safe-area-inset-bottom, 0px)); }
+  .top { backdrop-filter: none; -webkit-backdrop-filter: none; background: var(--panel); } /* fixed lišta nesmí mít jako rodiče filtr */
+  .top .wrap.top-row { padding-block: 8px; }
+  .brand-t { font-size: 23px; }
+  .brand-mark { width: 26px; height: 26px; }
+  .nav-wrap { padding: 0 !important; }
+  .tabs { position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 0;
+    background: var(--panel); border-top: 1px solid var(--line); padding: 5px max(4px, env(safe-area-inset-left, 0px)) max(5px, env(safe-area-inset-bottom, 0px)); overflow: visible; }
+  .tab, .tab-more { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-family: var(--font-body); font-size: 11px; font-weight: 600;
+    padding: 5px 0 4px; margin: 0; border: 0; border-radius: 10px; color: var(--muted); background: none; cursor: pointer; min-width: 0; }
+  .tab svg, .tab-more svg { width: 23px; height: 23px; }
+  .tab[aria-selected="true"], .tab-more.on { color: var(--accent); background: color-mix(in srgb, var(--accent) 11%, transparent); }
+  .tab.sec { display: none; }
+  .more-sheet { position: fixed; right: 8px; bottom: calc(70px + env(safe-area-inset-bottom, 0px)); z-index: 41; background: var(--panel); border: 1px solid var(--line); border-radius: 14px;
+    box-shadow: 0 10px 30px rgb(0 0 0 / .18); padding: 6px; display: flex; flex-direction: column; min-width: 200px; }
+  .more-sheet button { all: unset; cursor: pointer; padding: 11px 14px; border-radius: 9px; font-weight: 600; display: flex; align-items: center; gap: 10px; }
+  .more-sheet button svg { width: 20px; height: 20px; color: var(--muted); }
+  .more-sheet button[aria-current="true"] { color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, transparent); }
+  .more-sheet button:focus-visible { outline: 2px solid var(--accent); }
+  .fy-toast { bottom: calc(80px + env(safe-area-inset-bottom, 0px)) !important; }
+  main.wrap { padding-top: 14px; }
+}
 .offline-note { position: sticky; top: 0; z-index: 50; background: var(--warn); color: #fff; font-size: 13px; padding: 6px 16px; text-align: center; }
 /* ---------- fantasy ---------- */
 #fantasy-root { display: flex; flex-direction: column; gap: 16px; }
@@ -435,6 +502,10 @@ tr.fy-me td { background: color-mix(in srgb, var(--accent) 10%, transparent); }
 .fy-invite { background: color-mix(in srgb, var(--good) 14%, transparent); border-radius: 8px; padding: 8px 10px; font-size: 14px; margin: 0 0 10px; }
 .fy-warn { position: absolute; top: 5px; left: 5px; width: 18px; height: 18px; border-radius: 50%; background: var(--bad); color: #fff; font-weight: 700; font-size: 12px; display: grid; place-items: center; }
 .fy-warn-t { color: var(--bad) !important; }
+.fy-opp { font-size: 11px; color: var(--muted); }
+.fy-xpsum { margin: 10px 0 0; font-size: 13.5px; color: var(--muted); }
+.fy-line.b .fy-sn { font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; overflow-wrap: normal; }
+.fy-bench .cap { text-transform: none; letter-spacing: 0; font-size: 12.5px; }
 </style>
 </head>
 <body>
@@ -450,43 +521,45 @@ tr.fy-me td { background: color-mix(in srgb, var(--accent) 10%, transparent); }
       <rect x="35" y="87" width="16" height="26"/><rect x="349" y="87" width="16" height="26"/>
     </g>
   </svg>
-  <div class="wrap">
-    <div class="brand">
-      <div class="cap">Livesport Superliga · florbal muži</div>
-      <h1>Superliga <span>predikce</span></h1>
-      <p>Šance na výsledky, simulace sezóny a projekce hráčů z vlastního modelu nad 10 sezónami dat.</p>
-    </div>
+  <div class="wrap top-row">
+    <a class="brand" href="#zapasy" aria-label="Superliga predikce – úvod">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13" fill="none" stroke="currentColor" stroke-width="2.4"/><g fill="currentColor"><circle cx="16" cy="9.5" r="2.2"/><circle cx="10" cy="14" r="2.2"/><circle cx="22" cy="14" r="2.2"/><circle cx="12.3" cy="21" r="2.2"/><circle cx="19.7" cy="21" r="2.2"/></g></svg>
+      <span class="brand-t">Superliga <span>predikce</span></span>
+    </a>
     <div class="status" id="status">
-      <span><span class="dot" id="status-dot"></span>Model v2 přepočten <b id="st-run">…</b></span>
-      <span>Sezóna <b id="st-season">…</b></span>
-      <span><b id="st-matches">…</b> zápasů v databázi</span>
-      <button class="theme-btn" id="theme-btn" type="button">Světlý / tmavý</button>
+      <span class="st-run" title="Kdy model naposledy přepočítal šance"><span class="dot" id="status-dot"></span><span class="st-x">Přepočteno </span><b id="st-run">…</b></span>
+      <span class="st-x">Sezóna <b id="st-season">…</b></span>
+      <span class="st-x"><b id="st-matches">…</b> zápasů v databázi</span>
+      <button class="theme-btn" id="theme-btn" type="button" aria-label="Přepnout světlý a tmavý vzhled" title="Světlý / tmavý vzhled"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg></button>
     </div>
   </div>
-</header>
-
-<main class="wrap">
-  <section class="hero" id="hero" aria-label="Shrnutí">
-    <div class="card"><div class="cap">Favorit na titul</div><div class="hero-row"><span class="hero-team skel" id="h-fav">Tým</span><span class="big skel" id="h-fav-p">00 %</span></div><div class="muted" id="h-fav-sub">&nbsp;</div></div>
-    <div class="card"><div class="cap">Nejbližší zápas</div><div class="hero-row"><span class="hero-team skel" id="h-next">Tým – Tým</span><span class="big skel" id="h-next-p">00 %</span></div><div class="muted" id="h-next-sub">&nbsp;</div></div>
-    <div class="card"><div class="cap">Nejvíc ohrožený sestupem</div><div class="hero-row"><span class="hero-team skel" id="h-rel">Tým</span><span class="big skel" id="h-rel-p">00 %</span></div><div class="muted" id="h-rel-sub">&nbsp;</div></div>
-  </section>
-
+  <div class="wrap nav-wrap">
   <nav class="tabs" role="tablist" aria-label="Sekce">
     <button class="tab" role="tab" data-tab="zapasy" aria-selected="true">Zápasy</button>
     <button class="tab" role="tab" data-tab="fantasy" aria-selected="false">Fantasy</button>
     <button class="tab" role="tab" data-tab="tabulka" aria-selected="false">Tabulka</button>
     <button class="tab" role="tab" data-tab="tymy" aria-selected="false">Týmy</button>
     <button class="tab" role="tab" data-tab="hraci" aria-selected="false">Hráči</button>
-    <button class="tab" role="tab" data-tab="kurzy" aria-selected="false">Kurzy</button>
-    <button class="tab" role="tab" data-tab="model" aria-selected="false">Přesnost</button>
-    <button class="tab" role="tab" data-tab="jak" aria-selected="false">Jak to funguje</button>
+    <button class="tab sec" role="tab" data-tab="kurzy" aria-selected="false">Kurzy</button>
+    <button class="tab sec" role="tab" data-tab="model" aria-selected="false">Přesnost</button>
+    <button class="tab sec" role="tab" data-tab="jak" aria-selected="false">Jak to funguje</button>
+    <button class="tab-more" id="tab-more" type="button" aria-expanded="false" aria-controls="more-sheet">Více</button>
   </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
 
   <!-- ===================== ZÁPASY ===================== -->
   <section class="panel" id="zapasy" role="tabpanel">
+    <section class="hero" id="hero" aria-label="Shrnutí">
+    <div class="card"><div class="hero-l">Favorit na titul</div><div class="hero-row"><span class="hero-team skel" id="h-fav">Tým</span><span class="big skel" id="h-fav-p">00 %</span></div><div class="muted" id="h-fav-sub">&nbsp;</div></div>
+    <div class="card"><div class="hero-l">Nejbližší zápas</div><div class="hero-row"><span class="hero-team skel" id="h-next">Tým – Tým</span><span class="big skel" id="h-next-p">00 %</span></div><div class="muted" id="h-next-sub">&nbsp;</div></div>
+    <div class="card"><div class="hero-l">Nejvíc ohrožený sestupem</div><div class="hero-row"><span class="hero-team skel" id="h-rel">Tým</span><span class="big skel" id="h-rel-p">00 %</span></div><div class="muted" id="h-rel-sub">&nbsp;</div></div>
+  </section>
     <div class="tools">
-      <p class="muted" style="margin:0;max-width:70ch">Velké číslo = šance na výhru včetně prodloužení a nájezdů. Pruh = výsledek po 60 minutách (domácí · remíza · hosté). Uprostřed očekávané góly. Šipka u týmu ukazuje, že poslední sestava byla výrazně silnější ▲ nebo slabší ▼ než obvykle.</p>
+      <details class="howto"><summary>Jak číst kartu zápasu</summary><p class="muted">Velké číslo = šance na výhru včetně prodloužení a nájezdů. Pruh = výsledek po 60 minutách (domácí · remíza · hosté). Uprostřed očekávané góly. Šipka u týmu ukazuje, že poslední sestava byla výrazně silnější ▲ nebo slabší ▼ než obvykle.</p></details>
       <div class="chips" id="round-chips" aria-label="Počet kol"></div>
     </div>
     <div id="upcoming"></div>
@@ -705,6 +778,7 @@ tr.fy-me td { background: color-mix(in srgb, var(--accent) 10%, transparent); }
       <p><b>Co je nové ve verzi 3:</b> (1) <b>Síla soupeře</b>: body se násobí podle toho, jak těžké obrany hráč potkával. V lize, kde hraje každý s každým, je rozdíl malý (u 90 % hráčů do ±5 %), ale body proti silným týmům váží víc. (2) <b>Zahraničí</b>: sezóny ve Švédsku (SSL, Allsvenskan), Finsku (F-liiga) a Švýcarsku (NLA, NLB) se převádějí na „superligové“ body koeficientem ligy spočítaným z hráčů, kteří hráli v obou soutěžích (SSL × 2,3, F-liiga × 1,3, NLA × 1,28, NLB × 0,83). Hráč, který se vrátil, tak není podhodnocený jen proto, že v posledních letech nehrál Superligu. Švédská data jsou neúplná (veřejný zdroj nemá všechny hráče). (3) <b>Hra v poli</b>: +/- očištěné o sílu soupeře a odhad gólů pro a proti, když je hráčova formace na hřišti (z formací a autorů gólů, od 2022/23). Pomáhá hlavně u obránců, kde body moc neříkají. (4) Play-off a play-down jsem testoval zvlášť: nad rámec celkových čísel predikci nezlepšují, takže play-off zůstává v kariérní složce.</p>
       <p><b>Verze 4 – role, historie, forma, trofeje:</b> (1) <b>Pořadí v týmu</b> (kolikátý nejproduktivnější útočník/obránce svého klubu je hráč) zlepšilo predikci útočníků, takže je v modelu. Interakce „role × síla týmu“ a síla týmu v expertním modelu přínos neměly: síla týmu se do OVR promítá jen nepřímo (přes roli, minuty a podíl na gólech), protože hráč, který přestoupí do slabšího týmu, boduje skoro stejně. (2) <b>Historie:</b> otestoval jsem okna 2–4 sezóny a různé rychlosti stárnutí. Nejlépe vychází 4 sezóny s vahami 1 : ½ : ¼ : ⅛ (poslední sezóna má 53 % váhy okna), plus kariérní průměr ze všech sezón (každý rok starší × 0,75). (3) <b>Forma po vzoru FIFA:</b> karta ukazuje základní OVR a „živé“ OVR s bonusem/malusem za posledních 10 zápasů (max ±6). Test na 19 tisících zápasech hráčů: forma o 1 směrodatnou odchylku lepší = o 17 % víc bodů v dalším zápase. U brankářů je signál slabý, proto mají poloviční bonus (max ±3). (4) <b>Trofeje</b> (tituly mistra, Pohár mistrů, medaile z MS) zlepšily predikci obránců, u útočníků ne – proto vstupují jen do OVR obránců; u všech jsou vidět v detailu karty.</p>
       <p><b>H2H a forma v predikci zápasů:</b> model zápasů nově posouvá očekávané góly podle vzájemných zápasů dvojice (odchylka od očekávání za poslední 3 roky, stažená) a formy týmů (posledních 3 zápasů). Na zápasech 2019–2026 to mimo vzorek zlepšilo predikci, ale efekt je malý – typicky do ±3 % gólů. Rozpad je vidět u každého zápasu (H2H karta) a v detailu dvojice týmů.</p>
+      <p><b>Kalibrace favoritů (říjen 2026):</b> kontrola na 1 650 zápasech ukázala, že model favoritům trochu nedůvěřoval – kde dával outsiderovi 20–30 %, vyhrál outsider jen v 18 %. Rozdíl síly v očekávaných gólech se proto roztahuje o 10 %, což mimo vzorek zlepšilo predikce víc než H2H a forma dohromady. Naopak sestava z minulého zápasu (kdo chyběl) predikci nezlepšila, takže ji model používá jen s malou vahou.</p>
       <p><b>Přesnost:</b> na sezónách, které model při učení neviděl, vysvětlí 54,5 % rozdílů v dopadu útočníků (v2: 53 %), u hráčů po návratu ze zahraničí stoupla korelace s dalším výkonem z 0,66 na 0,74. Budoucího reprezentanta správně seřadí před nereprezentanta v 92 % dvojic útočníků a 87 % dvojic obránců (v2: 92 % a 86 %). <b>Brankáři:</b> úspěšnost zákroků stažená k průměru, částečně očištěná o obranu týmu, plus bonus za reprezentaci. Očištění o kvalitu střelců soupeře, play-off ani stabilita při ~90 sezónách k ověření přesnost nezvedly, proto zůstává jednodušší model (zákroky 55 %, stabilita 15 %, zkušenost a vytížení po 10 %).</p>
       <p><b>Týmové OVR</b> je síla z predikčního modelu (útok + obrana) na stejné stupnici: 75 = průměrný tým od roku 2018. Atributy: ÚTO a OBR z modelu, BRA = OVR brankáře jedničky, PŘE a OSL = speciální formace, KÁD = průměrné OVR 18 nejlepších hráčů v poli, FOR = body z posledních 5 zápasů.</p>
       <p><b>Na co dát pozor:</b> obránce, který nesbírá body, je vidět jen přes +/- a vytížení, a to jsou slabé signály. Jeho OVR je proto spíš opatrné. Hráč s malým počtem zápasů je stažený k průměru a jeho spolehlivost je v detailu karty.</p>
@@ -762,6 +836,7 @@ tr.fy-me td { background: color-mix(in srgb, var(--accent) 10%, transparent); }
 </dialog>
 
 <div class="tip" id="tip"></div>
+<div class="more-sheet" id="more-sheet" hidden></div>
 
 <script>
 /* =====================================================================
@@ -822,12 +897,45 @@ try { const t = localStorage.getItem("sl-theme"); if (t) document.documentElemen
 
 /* ---------- záložky ---------- */
 const tabs = [...document.querySelectorAll(".tab")];
+const ICONS = {
+  zapasy: '<circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><g fill="currentColor"><circle cx="12" cy="7.2" r="1.6"/><circle cx="7.6" cy="10.6" r="1.6"/><circle cx="16.4" cy="10.6" r="1.6"/><circle cx="9.3" cy="15.8" r="1.6"/><circle cx="14.7" cy="15.8" r="1.6"/></g>',
+  fantasy: '<path d="M8 3.5 4 5.5 2.8 10l3 .8V20.5h12.4V10.8l3-.8L20 5.5l-4-2c-.7 1.6-2.2 2.6-4 2.6s-3.3-1-4-2.6Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>',
+  tabulka: '<g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 6h2M4 12h2M4 18h2M9 6h11M9 12h8M9 18h5"/></g>',
+  tymy: '<path d="M12 3 4.5 5.8v5.4c0 4.6 3.1 8.2 7.5 9.8 4.4-1.6 7.5-5.2 7.5-9.8V5.8Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 7.5v9M8.5 11h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>',
+  hraci: '<g fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4.5" y="3" width="15" height="18" rx="2.5"/><circle cx="12" cy="10" r="2.8"/><path d="M7.8 17.5c.8-2 2.4-3 4.2-3s3.4 1 4.2 3" stroke-linecap="round"/></g>',
+  kurzy: '<g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 19 9.5 12l3.5 3.5L20 7"/><path d="M15 7h5v5"/></g>',
+  model: '<g fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/></g><circle cx="12" cy="12" r="1.5" fill="currentColor"/>',
+  jak: '<g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.4a2.5 2.5 0 1 1 3.4 2.3c-.6.3-1 .9-1 1.6v.4"/></g><circle cx="12" cy="17" r="1.1" fill="currentColor"/>',
+  more: '<g fill="currentColor"><circle cx="5.5" cy="12" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="18.5" cy="12" r="1.8"/></g>',
+};
+const svgIcon = (k) => `<svg viewBox="0 0 24 24" aria-hidden="true">${ICONS[k] || ""}</svg>`;
+const moreBtn = $("#tab-more"), moreSheet = $("#more-sheet");
+function decorateNav() {
+  document.querySelectorAll(".tab").forEach((t) => { if (!t.querySelector("svg")) t.insertAdjacentHTML("afterbegin", svgIcon(t.dataset.tab)); });
+  if (moreBtn && !moreBtn.querySelector("svg")) moreBtn.insertAdjacentHTML("afterbegin", svgIcon("more"));
+  if (moreSheet) moreSheet.replaceChildren(...[...document.querySelectorAll(".tab.sec")].map((t) => {
+    const b = document.createElement("button"); b.type = "button"; b.dataset.tab = t.dataset.tab;
+    b.innerHTML = svgIcon(t.dataset.tab); b.append(t.textContent.trim());
+    b.addEventListener("click", () => { closeMore(); showTab(t.dataset.tab); });
+    return b;
+  }));
+}
+function closeMore() { if (moreSheet) moreSheet.hidden = true; moreBtn?.setAttribute("aria-expanded", "false"); }
+moreBtn?.addEventListener("click", (e) => { e.stopPropagation(); const open = moreSheet.hidden; moreSheet.hidden = !open; moreBtn.setAttribute("aria-expanded", open); });
+document.addEventListener("click", (e) => { if (moreSheet && !moreSheet.hidden && !moreSheet.contains(e.target)) closeMore(); });
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeMore(); });
 function showTab(name) {
-  tabs.forEach((t) => { const on = t.dataset.tab === name; t.setAttribute("aria-selected", on); document.getElementById(t.dataset.tab).hidden = !on; });
+  const all = [...document.querySelectorAll(".tab")];
+  all.forEach((t) => { const on = t.dataset.tab === name; t.setAttribute("aria-selected", on); document.getElementById(t.dataset.tab).hidden = !on; });
+  const sec = !!document.querySelector(`.tab.sec[data-tab="${name}"]`);
+  moreBtn?.classList.toggle("on", sec);
+  moreSheet?.querySelectorAll("button").forEach((b) => b.setAttribute("aria-current", b.dataset.tab === name));
   if (history.replaceState) history.replaceState(null, "", "#" + name);
+  if (scrollY > 0) scrollTo({ top: 0 });
   renderAll();
 }
-tabs.forEach((t) => t.addEventListener("click", () => showTab(t.dataset.tab)));
+decorateNav();
+document.querySelectorAll(".tab").forEach((t) => t.addEventListener("click", () => showTab(t.dataset.tab)));
 
 /* ---------- tooltip ---------- */
 const tip = $("#tip");
@@ -1950,7 +2058,9 @@ function fyLogout() { FY.session = null; FY.me = null; FY.draft = null; FY.dirty
 /* ---------- data ---------- */
 async function fyLoadPlayers(force) {
   if (FY.players.length && !force) return;
-  FY.players = await q("dash_fantasy_players", "select=*&order=price.desc");
+  const [pl, xp] = await Promise.all([q("dash_fantasy_players", "select=*&order=price.desc"), q("dash_fantasy_xp", "select=player_id,xp,games,opp,p_play").catch(() => [])]);
+  const xm = Object.fromEntries(xp.map((x) => [x.player_id, x]));
+  FY.players = pl.map((p) => ({ ...p, xp: xm[p.player_id] ? +xm[p.player_id].xp : null, opp: xm[p.player_id]?.opp || null, xgames: xm[p.player_id]?.games ?? 0 }));
   FY.byId = Object.fromEntries(FY.players.map((p) => [p.player_id, p]));
 }
 async function fyLoadMe() {
@@ -2123,7 +2233,8 @@ function slotTile(i) {
     return b;
   }
   const lg = el("span", "fy-logo"); lg.appendChild(logoEl(p.club_id, p.abbr));
-  b.append(lg, el("span", "fy-sn", surname(p.name)), el("span", "fy-sm", `${p.abbr || ""} · ${fyPrice(p.price)}${priceArrow(p)}`), el("span", "fy-pts", `${p.pts} b.`));
+  b.append(lg, el("span", "fy-sn", surname(p.name)), el("span", "fy-sm", `${p.abbr || ""} · ${fyPrice(p.price)}${priceArrow(p)}`), el("span", "fy-pts", p.xp != null ? `${n1.format(p.xp)} xP` : `${p.pts} b.`));
+  if (p.opp) b.appendChild(el("span", "fy-opp", "vs " + p.opp));
   if (p.last3 === 0) { const w = el("span", "fy-warn", "!"); w.title = "Nehrál v posledních 3 zápasech klubu"; b.appendChild(w); }
   if (d.captain === id) b.appendChild(el("span", "fy-cap", "C"));
   else if (d.vice === id) b.appendChild(el("span", "fy-cap v", "Z"));
@@ -2143,6 +2254,9 @@ function builderCard() {
   const bench = el("div", "fy-bench"); bench.appendChild(el("span", "cap", "Lavička – střídá, když hráč ze základu v kole nenastoupí"));
   bench.appendChild(row([6, 7, 8, 9], "b"));
   c.append(rink, bench);
+  const xpt = d.players.slice(0, 6).reduce((a, id) => a + (id && FY.byId[id]?.xp ? FY.byId[id].xp * (id === d.captain ? 2 : 1) : 0), 0);
+  if (FY.players.some((p) => p.xp != null) && d.players.some(Boolean))
+    c.appendChild(el("p", "fy-xpsum", `Očekávané body základu v ${me.open_gw ? me.open_gw.label : "dalším kole"}: ${n1.format(xpt)} (s kapitánem ×2).`));
 
   // rozpočet a přestupy
   const left = R.budget - s.spent;
@@ -2206,11 +2320,11 @@ function openPicker(i) {
   const cur = d.players[i];
   const s = squadStats(d); const budgetLeft = R.budget - s.spent + (cur ? +FY.byId[cur].price : 0);
   openDet("Vyber " + POS_N4[pos]);
-  const st = { q: "", sort: "pts", club: "" };
+  const st = { q: "", sort: FY.players.some((p) => p.xp != null) ? "xp" : "pts", club: "" };
   const tools = el("div", "tools");
   const search = inputEl("search", "q", { placeholder: "Hledat jméno…" });
   const sorts = el("div", "chips");
-  for (const [k, t] of [["pts", "Body"], ["ppg", "Body/zápas"], ["price", "Cena"], ["ovr", "OVR"], ["selected", "Oblíbenost"]]) {
+  for (const [k, t] of [["xp", "Další kolo"], ["pts", "Body"], ["ppg", "Body/zápas"], ["price", "Cena"], ["ovr", "OVR"], ["selected", "Oblíbenost"]]) {
     const b = el("button", "chip", t); b.type = "button"; b.dataset.k = k; b.setAttribute("aria-pressed", k === st.sort);
     b.onclick = () => { st.sort = k; sorts.querySelectorAll(".chip").forEach((x) => x.setAttribute("aria-pressed", x === b)); draw(); }; sorts.appendChild(b);
   }
@@ -2233,9 +2347,9 @@ function openPicker(i) {
       const why = whyOf(p);
       const b = el("button", "fy-pick"); b.type = "button"; b.disabled = !!why;
       const lg = el("span", "fy-logo"); lg.appendChild(logoEl(p.club_id, p.abbr));
-      const nm = el("span", "fy-pn"); nm.append(el("b", null, p.name), el("small", null, `${p.abbr || ""} · OVR ${p.ovr ?? "–"} · ${p.gp} záp. · ${p.ppg != null ? n1.format(p.ppg) : "–"} b./z.${p.selected ? " · vybralo " + p.selected : ""}`));
+      const nm = el("span", "fy-pn"); nm.append(el("b", null, p.name), el("small", null, `${p.abbr || ""} · OVR ${p.ovr ?? "–"} · ${p.pts} b. za ${p.gp} záp.${p.opp ? " · vs " + p.opp : ""}${p.selected ? " · vybralo " + p.selected : ""}`));
       if (p.last3 === 0) nm.appendChild(el("small", "fy-warn-t", "⚠ nehrál v posl. 3 zápasech"));
-      b.append(lg, nm, el("span", "fy-pp", String(p.pts)), el("span", "fy-pr", why || fyPrice(p.price) + priceArrow(p)));
+      b.append(lg, nm, el("span", "fy-pp", p.xp != null ? n1.format(p.xp) : "–"), el("span", "fy-pr", why || fyPrice(p.price) + priceArrow(p)));
       b.onclick = () => { closeDet(); setDraft((x) => { const old = x.players[i]; x.players[i] = p.player_id; if (old && x.captain === old) x.captain = i < 6 ? p.player_id : null; if (old && x.vice === old) x.vice = i < 6 ? p.player_id : null; }); };
       return b;
     }));
@@ -2243,14 +2357,14 @@ function openPicker(i) {
   };
   search.oninput = () => { st.q = search.value; draw(); };
   clubSel.onchange = () => { st.club = clubSel.value; draw(); };
-  const head = el("div", "fy-list-head"); head.append(el("span", null, "Hráč"), el("span", "r", "Body"), el("span", "r", "Cena"));
+  const head = el("div", "fy-list-head"); head.append(el("span", null, "Hráč"), el("span", "r", "xP"), el("span", "r", "Cena"));
   $("#det-body").replaceChildren(tools, info, head, list);
   draw();
 }
 
 function autoPick() { // hladový návrh: hodnota hráče, rozpočet rozložený mezi zbývající místa, limit klubu
   const R = FY.me.rules, d = { players: Array(10).fill(null), captain: null, vice: null };
-  const val = (p) => (p.ppg ?? 0) * Math.min(1, p.gp / 4) + ((p.ovr || 60) - 55) / 8;
+  const val = (p) => 0.6 * ((p.ppg ?? 0) * Math.min(1, p.gp / 4) + ((p.ovr || 60) - 55) / 8) + 0.4 * (p.xp ?? 0);
   const minP = {}; for (const p of FY.players) minP[p.pos] = Math.min(minP[p.pos] ?? 99, +p.price);
   const order = [3, 4, 5, 1, 2, 0, 6, 7, 8, 9];
   const clubs = {}; let spent = 0;
@@ -2366,6 +2480,7 @@ function rulesCard(open) {
       "Hraje základ 1 + 2 + 3 (brankář, 2 obránci, 3 útočníci). Lavička (1 + 1 + 2) střídá, když hráč ze základu v kole nenastoupí.",
       "Nejvýš 3 hráči z jednoho klubu. Kapitán má body dvojnásobně; nenastoupí-li, zdvojnásobí se zástupce.",
       "Sestavu na kolo měníš do začátku jeho prvního zápasu. Uložená sestava platí i pro další kola, dokud ji nezměníš.",
+      "xP u hráče = kolik bodů od něj čekáme v nejbližším kole podle predikce zápasu (soupeř, šance na výhru, očekávané góly) a podle toho, jak pravidelně nastupuje.",
       "Přestupy: před prvním kolem bez omezení, pak 2 zdarma na kolo, každý další −4 body. Přesuny mezi základem a lavičkou jsou zdarma."]),
     el("h3", null, "Body hráčů v poli"),
     ul(["nastoupil +1 · výhra týmu +1", "gól: útočník +3, obránce +4 · asistence +2 · hattrick +2 navíc",
